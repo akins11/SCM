@@ -1,0 +1,25 @@
+---
+title: "About"
+image: logo.svg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/Akinwande_ay24?s=09
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/akinwande-ayomide-7bb37a199
+    - icon: github
+      text: Github
+      href: https://github.com/akins11/
+
+---
+
+This blog is dedicated to simplifying Supply Chain Management (SCM) using data related tools, models, and techniques. As someone who is still learning about this field, i am excited to share my journey and insight with you.
+
+One of my main goals for this blog is to provide a platform for knowledge sharing using tools such as R, Python, SQL, etc. I believe that these tools can help us better understand and optimize supply chain processes, ultimately leading to increase efficiency and cost savings.
+
+I will explore various topics related to SCM, such as inventory optimization, logistics management and demand forecasting. I will also share my experiences with using different data analysis techniques, including data visualization and machine learning.
+
+While i am still learning, i hope that my blog can serve as a resource for others who are interested in exploring this fascinating field.

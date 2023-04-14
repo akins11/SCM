@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Supply Chain Management Analysis"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/akins11/
+      - icon: twitter
+        href: https://twitter.com/Akinwande_ay24?s=09
+format:
+  html:
+    highlight-style: github
+    theme: 
+      light: litera
+      dark: superhero
+    css: styles.css
+
+
+

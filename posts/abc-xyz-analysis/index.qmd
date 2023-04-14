@@ -1,0 +1,542 @@
+---
+title: "ABC-XYZ Inventory Classification"
+author: "Ayomide Akinwande"
+date: "2023-04-10"
+categories: [code, inventory analysis, python]
+jupyter: python3
+---
+
+Effective inventory management is essential in maintaining optimal levels of inventory which ensures that the right items are always available when needed while reducing the cost of holding inventory and ultimately avoiding stockouts or excess inventory.  
+Inventory classification using the ABC-XYZ analysis is a widely used technique which categorizes items based on their sales volume and demand variability, allowing businesses to have better control over thier inventories and to also use optimal strategies on items that are most important to their business. We will utilize the powerful framework of ABC-XYZ inventory classification model to analyze transaction data for products. By performing this analysis, we will be able to extract valuable insights and identify trends that can help inform strategic decisions around inventory management.
+
+![](inventory-classification-img.svg)
+
+### Load the packages
+For this project the two major package we will use is the `pandas package` for data summarization and reshaping and `plotnine` for data visualization based on the grammer of graphics.
+```{python}
+#| message: false
+#| warning: false
+import pandas as pd
+import numpy as np
+import plotnine as g
+from datetime import timedelta
+```
+
+```{python}
+#| code-fold: true
+def custom_theme(figure_size=(10, 4)):
+    return (
+        g.theme_minimal() +
+        g.theme(figure_size=figure_size, 
+                plot_background=g.element_rect(fill="#FFFFFF", color="#FFFFFF"),
+                panel_background=g.element_rect(fill="#FFFFFF"),
+                plot_title=g.element_text(color="#545454", size=14),
+                axis_title=g.element_text(color="#4F4F4F", size=11),
+                axis_text=g.element_text(color="#474747"))
+    )
+```
+
+  
+    
+### Import transaction data
+```{python}
+df = pd.read_csv("data/scanner_data.csv")
+
+df.head()
+```
+
+
+### Quick data inspection
+This inspection is to help us identify any issue pertaining to the overall data.
+
+#### Data struture
+```{python}
+df.info()
+```
+
+There are 131,706 rows and 6 columns in total. The `Date` variable have an object data type instead of datetime data type, also we will drop the `Unnamed: 0` column which is not useful for this analysis.
+
+#### SKU summary
+Product `SKU` which stands for `stock keeping unit` is a unique identifier code assigned to each item in a company's inventory and they are used to identify, track and manage inventories. We can check the total number of unique SKU by using the `nunique()` method from pandas DataFrame.
+
+```{python}
+print(f"There are {df['SKU'].nunique() :,} unique SKUs.")
+```
+
+
+#### Quantity & sales summary
+A descriptive summary of `Quantity` which is the amount of a particular product customers are willing to purchase, and it appears that majority of the orders placed are for a single unit we can also see a major outlier of 400 representing the highest order.
+```{python}
+df[["Quantity", "Sales_Amount"]].describe()
+```
+
+
+### Data cleaning
+We will perform some data cleaning such as:
+
+> Remove `Unnamed: 0` and `SKU_Category` columns which are not useful for this analysis.
+
+> Changing the `Date` variable to a datetime data type using the pandas `to_datetime()` function.
+
+> And finally convert all column names to lower case.
+
+```{python}
+df = (
+    df
+    .drop(["Unnamed: 0", "SKU_Category"], axis=1)
+    .assign(Date = lambda d: pd.to_datetime(d["Date"]))
+)
+
+df.columns = df.columns.str.lower()
+
+df.head()
+```
+
+
+### Product orders for a 12-month period
+To accurately determine the demand and variability for each product, we will use a 12-month period which provides sufficient amount of data for the analysis and also a representative sample of the patterns and trends of demand over time. To do this we will filter orders made in 2017 alone.
+
+```{python}
+df_m = (
+    df
+    .query("date >= '2017-01-01' & date <= '2017-12-31'")
+    .assign(month = lambda d: d["date"].dt.month)
+)
+```
+
+
+## ABC inventory classification
+ABC inventory classification helps business group items based on demand, cost, revenue and the overall relative importance of the item to the business. It helps them realize which of their products or services have the most significant impact on their financial success.  
+
+It categories items into three separate classes where:
+
+> Items in `class A` are considared to have high demand volume and revenue, majorly `80%` overall. 
+
+> Items in `class B` have slightly moderate demand volume and revenue, considared to be `15%` of the overall total.
+
+> Items in `class C` have reletively low demand volume and revenue.
+
+To group each product, we will perform the following operations:
+
+* Group the transaction data by SKU and extract the number of times each product was purchased, the total demand for the product and the sum of all sales amount.
+
+* The resulting data from the previous step will be arranged from the highest revenue to the lowest revenue (e.i in descending order).
+
+```{python}
+abc_df = (
+    df_m
+        .groupby("sku")
+        .agg(unique_purchases = ("sku", "nunique"),
+             total_demand = ("quantity", "sum"), 
+             total_revenue = ("sales_amount", "sum"))
+        .sort_values(by="total_revenue", ascending=False)
+        .reset_index()
+)
+
+abc_df.head()
+```
+
+* Get the cumulative sum of total revenue which determine the relative contribution of each product to the total revenue generated from all products.
+
+* Products that belong to the `A class` are those that accounted for `80%` of the revenue generated.
+* `Class B` products are those that fall between the top 80% and the next `15%` of revenue generated.
+* While products in `class C` are those that fall withing the remaining `5%` of revenue generated.
+
+```{python}
+#| code-fold: true
+
+def classify_abc_item(cum_percent):
+    """
+    Assign (ABC) classification to each product based on the their percentage of
+    revenue contribution. 
+
+    :param cum_percent: The running percentage of revenue contributed.
+    :return: A pandas Series with three unique category.
+    """
+
+    if cum_percent <= 80:
+        return 'A'
+    elif cum_percent > 80 and cum_percent <= 95:
+        return 'B'
+    else:
+        return 'C'
+```
+
+```{python}
+abc_df = abc_df.assign(
+    # running total of revenue.
+    revenue_cumsum = lambda d: d["total_revenue"].cumsum(),
+    # the percentage of total revenue.
+    revenue_running_percent = lambda d: (d["revenue_cumsum"] / d["total_revenue"].sum()) * 100,
+    # aasign each product a class.
+    abc_class = lambda d: d["revenue_running_percent"].apply(classify_abc_item),
+    # simple rank to each product based on the its percentage of revenue generated.
+    rank  = lambda d: d["revenue_running_percent"].rank().astype(int)
+)
+
+abc_df.head()
+```
+  
+<br> 
+
+### Summary
+```{python}
+temp = (
+    abc_df
+        .groupby("abc_class")
+        .agg(total_products = ('sku', 'nunique'),
+             total_demand = ('total_demand', "sum"),
+             total_revenue = ('total_revenue', "sum"))
+        .reset_index()
+)
+```
+
+```{python}
+#| code-fold: true
+
+def abc_plot(var: str, y_title: str, title: str):
+    return (
+        g.ggplot(data=temp.assign(prop = lambda d: (d[var] / d[var].sum())*100), 
+             mapping=g.aes(x="abc_class", y=var)) +
+        g.geom_col() +
+        g.geom_text(g.aes(label="prop", y=0), 
+                    position=g.position_dodge(width=.9), 
+                    nudge_x=-0.18,
+                    size=30, color="#4D4D4D",
+                    va="bottom",
+                    format_string="{:.1f}%") +
+        g.scale_y_continuous(labels = lambda l: ["{:,.0f}".format(v) for v in l]) +
+        g.labs(x="Class", y=y_title, title=title) +
+        custom_theme()
+    )
+```
+
+##### Number of Products
+```{python}
+#| message: false
+abc_plot(var="total_products", 
+         y_title="No. Products", 
+         title="Number of Products in Each Class")
+```
+
+A large number of products, e.i about 51.4% fall within the `class C` boundary which have the lowest demand and revenue generated while 21.7% of all products falls within the top 80% generating the highest revenue.
+
+##### Product Demand
+```{python}
+#| message: false
+abc_plot(var="total_demand", 
+         y_title="Qty. Demand", 
+         title="Total Quantity Demand by (ABC) Class")
+```
+
+Product classification summary by the quantity show how much of products in `class A` where in demand. There are no suprises here given that these products generate more revenue. For class C products, despite comprising of 51.4% of all products, they only have 9.9% of the total order quantity.
+
+
+##### Revenue
+```{python}
+(
+    g.ggplot(data=temp, mapping=g.aes(x="abc_class", y="total_revenue")) +
+    g.geom_col() +
+    g.scale_y_continuous(labels = lambda l: ["{:,.0f}".format(v) for v in l]) +
+    g.labs(x="Class", y="Revenue", title="Total Revenu by (ABC) Class") +
+    custom_theme()
+)
+```
+
+A visual representation of the `80/15/5 split` of the total revenue generated and as expected all products generating more demand and revenue are in the class A category. It is important for inventory managers to create an `optimize inventory level` for such product to meet demand, they should also `prioritize supplier relationship` to ensure adequate access to such products, and lastly there should be a huge `focus on quality` as anything less than that can lead to decrease in demand and eventually low revenue.
+
+
+
+## XYZ inventory classification
+The major aspect of ABC analysis is it focus on valuable items based on their demand and revenue with less emphasis on other factors such as demand variability and sessionality. This gap can be bridged using the XYZ inventory classification which categorize products according to their level of demand variability.  
+There are three categories in XYZ analysis which are:
+
+> `Class X`: These are items with low demand variability, they are less challenging to manage because of their predictable demand patterns.
+
+> `Class Y`: Items in this class have a moderate demand variability, but they are not easy to manage unlike  items in class X, but they have better predictable patterns than items in class Z.
+
+> `Class Z`: There are high demand variability in items that falls within this category, and demand for product are less stable and predictable.
+
+
+
+
+```{python}
+(
+    g.ggplot(data=df_m.groupby("month")["quantity"].sum().reset_index(), 
+             mapping=g.aes(x="factor(month)", y="quantity", group=1)) +
+    g.geom_line() +
+    g.scale_y_continuous(labels = lambda l: ["{:,.0f}".format(v) for v in l]) +
+    g.labs(x="Month", y="Quantity", title="Quantity Demand by Month") +
+    custom_theme()
+)
+```
+
+A rundown of the seasonality in the data indicate that the total customer order by month have huge variablility across the year with its `lowest point in August` while its `peaked in December`.
+It is crucial to note that there was a surge in order from March to May followed by an abrupt decline in order from June to August.
+
+```{python}
+(
+    g.ggplot(data=df_m.groupby("month")["sales_amount"].sum().reset_index(), 
+             mapping=g.aes(x="factor(month)", y="sales_amount", group=1)) +
+    g.geom_line() +
+    g.scale_y_continuous(labels = lambda l: ["{:,.0f}".format(v) for v in l]) +
+    g.labs(x="Month", y="Revenue", title="Total Revenue in Each Month") +
+    custom_theme() 
+)
+```
+
+Although there are similar seasonal pattern between the total quantity order and revenue, the upword trend in revenue appear to have began in January all the way through to May, before the expected drop in revenue similar to the quantity order.
+  
+    
+
+To draw out the XYZ class, we must first reshape the data and make each row represent a single SKU and the 12 months spread across different columns with values of the total quantity demand for a particular SKU.
+
+```{python}
+xyz_df = (
+    df_m
+        .groupby(["sku", "month"])["quantity"]
+        .sum()
+        .reset_index()
+        .pivot(index="sku", columns="month", values="quantity")
+        .fillna(0)
+        .add_prefix("M")
+        .reset_index()
+        .rename(index={"month": "index"})
+)
+
+xyz_df.columns.name = ""
+
+xyz_df.head()
+```
+
+
+```{python}
+xyz_df = xyz_df.assign(
+    # calculate the standard deviation of all months total demand.
+    std_demand   = lambda d: d[[c for c in xyz_df.columns if "M" in c]].std(axis=1),
+    # calculate the total demand across all months.
+    total_demand = lambda d: d[[c for c in xyz_df.columns if "M" in c]].sum(axis=1),
+    # calculate the average demand for each SKU.
+    avg_demand   = lambda d: d["total_demand"] / 12,
+    # coefficient of variation for each SKU
+    cov_demand   = lambda d: d["std_demand"] / d["avg_demand"]
+)
+
+xyz_df.head()
+```
+  
+    
+`Coefficient of variation` : or CV is a statistical measure that express the variability of a set of data as a percentage of its mean.
+
+> Formula: CV = (standard deviation / mean)
+
+To measure each SKU variability, its CV will be used to determine the level of variation. So values are closer to zero, it indicate a small amount of variability, while value further from zero indicate a high amount of variability.
+
+```{python}
+(
+    xyz_df["cov_demand"]
+        .agg(["min", "mean", "max"])
+        .reset_index()
+        .rename(columns={"index": "Stats", "cov_demand": "Coefficient of Variation"})
+)
+```
+
+The average CV of 1.75 indicate that the level of variability in demand is high since it falls within the CV range of 1-2, also the Maximum CV of 3.46 indicate that there are lot of products with high demand variability.
+
+
+```{python}
+(
+    g.ggplot(data=xyz_df, mapping=g.aes(x="cov_demand")) +
+    g.geom_histogram(color="#FFF", bins = 20) +
+    g.ggtitle("Coefficient of Variation") +
+    custom_theme()
+)
+```
+
+
+#### XYZ classes
+We will use the 0.5 / 1 / >1 CV to group all product into XYZ classes. products with a CV less than 0.5 indicate low demand variability and better forecating, this category of products will be assgined the X class while product with CV that falls within 0.5 to 1 indicate a moderate demand variability and will make up the Y class. Products with CV greater than 1 are much harder to predict and are subject to high fluctuations throughout the year and they will be categorised as Z class.
+
+```{python}
+#| code-fold: true
+def xyz_classifer(cov): # change name
+    """
+    Assign (XYZ) categories to each SKU based on their coefficient of 
+    variation (CV) in order quantity.
+
+    :param cov: Coefficient of variation in order quantity for SKU
+    :return:  A pandas Series with three unique category.
+    """
+
+    if cov <= 0.5:
+        return 'X'
+    elif cov > 0.5 and cov <= 1.0:
+        return 'Y'
+    else:
+        return 'Z'
+```
+
+
+```{python}
+xyz_df = xyz_df.assign(xyz_class = xyz_df["cov_demand"].apply(xyz_classifer))
+
+(
+    xyz_df["xyz_class"]
+        .value_counts()
+        .reset_index()
+        .rename(columns={"index": "Class", "xyz_class": "count"})
+)
+```
+
+Based on the number of product in each class, there are more products in the Z class than other classes, this is expected given the CV distribution earlier.
+
+
+```{python}
+(
+    xyz_df
+        .groupby("xyz_class")
+        .agg(total_product = ("sku", "nunique"),
+             total_demand = ("total_demand", "sum"),
+             std_of_demand = ("std_demand", "mean"),
+             average_demand = ("avg_demand", "mean"),
+             average_cov = ("cov_demand", "mean"))
+        .reset_index()
+)
+```
+
+
+
+```{python}
+month_cols = [c for c in xyz_df.columns if "M" in c]
+
+temp = (
+    xyz_df
+        .groupby("xyz_class")[month_cols]
+        .sum()
+        .unstack(level="xyz_class")
+        .reset_index()
+        .rename(columns={0: "total_demand", "": "month"})
+        .assign(month=lambda d: d["month"].astype("category").cat.reorder_categories(month_cols, ordered=True))
+)
+
+temp.head()
+```
+
+
+
+```{python}
+(
+    g.ggplot(data=temp, mapping=g.aes(x="month", y="total_demand", group=1)) +
+    g.geom_line() +
+    g.scale_y_continuous(labels= lambda l: ["{:,.0f}".format(v) for v in l]) +
+    g.facet_wrap(facets="xyz_class", nrow=3, scales="free_y") +
+    g.labs(x=None, y="Demand", title="(XYZ) Class by Total Quantity Order in each Month") +
+    custom_theme(figure_size=(10, 6))
+)
+```
+
+Examining each category represented on the graph, class X have the least amount of flutuations compared to class Y and class Z, class Z represent a clear case of high volatility on quantity demand across all months.
+
+
+
+
+## ABC-XYZ inventory analysis
+Combining both ABC and XYZ classes provides inventory managers with a clear insight on the most important items in the inventory, based on the amount of revenue they contribute and also their demand patterns. This information can help them determine the appropriate stock levels which reduces the risk of either stockouts or overstocking.
+
+###### Merge ABC and XYZ class tables
+```{python}
+abc_xyz = abc_df[["sku", "total_revenue", "abc_class"]].merge(
+    xyz_df[["sku", "std_demand", "total_demand", "avg_demand", "cov_demand", "xyz_class"]],
+    on="sku",
+    how="left"
+)
+
+abc_xyz.head()
+```
+  
+  
+##### Combining ABC & XYZ classes
+```{python}
+abc_xyz = abc_xyz.assign(abc_xyz_class = abc_xyz["abc_class"].astype(str) + abc_xyz["xyz_class"].astype(str))
+
+abc_xyz.head()
+```
+
+This combination create 9 unique classes which are AX, AY, AZ, BX, BY, BZ, CX, CY, and CZ and each SKU falls under one of them. Each combined class can be summarised as follow:
+
+`AX` : This category consist of high revenue generating items with a stable demand which makes them easy to forecast.
+
+`AY` : Also a high revenue generating items but with less stable demand, as demand varies over time.
+
+`AZ` : They are tough to forecaset because of their irregular demand nature, but they are also a high revenue generating item.
+
+`BX` : They generate moderate revenue and have a stable demand across all month.
+
+`BY` : Items in this category are less stable based on demand but they generate a moderate amount of revenue.
+
+`BZ` : Revenue generated from items in this category are moderate but forecasting demand for them can be very challenging.
+
+`CX` : Items in this category are easy to forecast but they generate a very low amount of revenue.
+
+`CY` : This category includes items with less stable demand and also low revenue.
+
+`CZ` : The items here are difficult to forecast because demand may be periodic and they also generate a very small amount of revenue.
+
+
+```{python}
+temp = (
+    abc_xyz
+        .groupby("abc_xyz_class")
+        .agg(total_sku=('sku', 'nunique'),
+             total_demand = ('total_demand', "sum"),
+             avg_demand = ('avg_demand', 'mean'),    
+             total_revenue = ('total_revenue', "sum"))
+        .reset_index()
+)
+
+temp
+```
+
+```{python}
+#| code-fold: true
+def abc_xyz_plot(var: str, y_title: str, title: str):
+    return (
+        g.ggplot(data=temp, mapping=g.aes(x="abc_xyz_class", y=var)) +
+        g.geom_col() +
+        g.labs(x="Class", y=y_title, title=title) +
+        g.scale_y_continuous(labels=lambda l: ["{:,.0f}".format(v) for v in l]) +
+        custom_theme()
+    )
+```
+
+```{python}
+#| message: false
+abc_xyz_plot(var="total_sku", 
+             y_title="No. Products", 
+             title="Number of Products by (ABC-XYZ) Class")
+```
+
+`47.6% of all products fall under the CZ class`, with this insight inventory managers need to develope a responsive or adaptive supply chain for these products that can instantly adjust to changes in demand, where inventory is oredered and received only when it is needed, which reduces carrying cost.
+
+
+```{python}
+#| message: false
+abc_xyz_plot(var="total_demand", 
+             y_title="Demand", 
+             title="Total Quantity Demand by (ABC-XYZ) Class")
+```
+
+For quantity demand, `class AX holds the majority with 44% of all demand`. Since only 7.86% of all product falls under the AX class, inventory managers can bring in more products from other class by reviewing price strategy, imporving marketing and promotion and also consider bundling or cross-selling with other high performing products such as products in class AX and AY. 
+
+
+```{python}
+#| message: false
+abc_xyz_plot(var="total_revenue", 
+             y_title="Revenue", 
+             title="Total Revenue by (ABC-XYZ) Class")
+```
+
+Class AX and AY both contains majority of products that generate the highest revenue, a combined 72% of revenue. Inventory managers should consider conducting market research on products generating less revenue to identify trends and customer preferences. This can help them identify new opputunities and adjust product features and marketing accordingly.
+
+
+In summary ABC-XYZ analysis provides insight that inventory managers can utilize to optimize inventory business operations, by indentifying the most critical items and assigning appproprate inventory control policies, businesses can better manage their stock and ultimately improve customer satisfaction. Additionally, its can help inventory managers to identify opportunities for process improvement, enhance decision-making, and allocate resources effectively.
