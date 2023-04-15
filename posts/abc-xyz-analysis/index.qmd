@@ -40,7 +40,8 @@ def custom_theme(figure_size=(10, 4)):
     
 ### Import transaction data
 ```{python}
-df = pd.read_csv("data/scanner_data.csv")
+path = "https://raw.githubusercontent.com/akins11/SCM/main/posts/abc-xyz-analysis/data/scanner_data.csv"
+df = pd.read_csv(path)
 
 df.head()
 ```

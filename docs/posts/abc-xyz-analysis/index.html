@@ -178,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <h1 class="title">ABC-XYZ Inventory Classification</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">code</div>
-                <div class="quarto-category">analysis</div>
+                <div class="quarto-category">inventory analysis</div>
                 <div class="quarto-category">python</div>
               </div>
                   </div>
@@ -226,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
-  <li><a href="#xyz-classification" id="toc-xyz-classification" class="nav-link" data-scroll-target="#xyz-classification">XYZ Classification</a>
+  <li><a href="#xyz-inventory-classification" id="toc-xyz-inventory-classification" class="nav-link" data-scroll-target="#xyz-inventory-classification">XYZ inventory classification</a>
   <ul>
   <li><a href="#xyz-classes" id="toc-xyz-classes" class="nav-link" data-scroll-target="#xyz-classes">XYZ classes</a></li>
   </ul></li>
@@ -240,20 +240,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>Many retail stores understand that effective inventory management is essential in maintaining optimal levels of inventory which ensures that the right items are always available when needed, while reducing+ the cost of holding inventory and ultimatly+ avoiding stockouts of excess inventory. Commonly when ratailter talk+ about inventory management, inventory classification using the ABC-XYZ analysis is a<br>
-widely used technique which categorizes items based on their sales value and demand variability, allowing ratailter+ to focus thier attention and use optimal+ strategies+ on items that are most important to their business. [we will perform the abc-xyz classification on a product sales data and extract usefull insights that will help in managing both current and future stock.]</p>
-<ul>
-<li>define abc analysis in ecommerce</li>
-<li>How ABC inventory management works</li>
-<li>Pareto principle.</li>
-<li>define abc-xyz analysis in ecommerce</li>
-<li>How XYZ inventory management works.</li>
-<li>explain xyz and why product demand variablitiy level is important in forecasting demand.</li>
-<li>Combining ABC and XYZ.</li>
-</ul>
+<p>Effective inventory management is essential in maintaining optimal levels of inventory which ensures that the right items are always available when needed while reducing the cost of holding inventory and ultimately avoiding stockouts or excess inventory.<br>
+Inventory classification using the ABC-XYZ analysis is a widely used technique which categorizes items based on their sales volume and demand variability, allowing businesses to have better control over thier inventories and to also use optimal strategies on items that are most important to their business. We will utilize the powerful framework of ABC-XYZ inventory classification model to analyze transaction data for products. By performing this analysis, we will be able to extract valuable insights and identify trends that can help inform strategic decisions around inventory management.</p>
+<p><img src="inventory-classification-img.svg" class="img-fluid"></p>
 <section id="load-the-packages" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-packages">Load the packages</h3>
-<p>For this project the two major packages we will mostly use is the pandas package for data summarization and reshapping and plotnine for data visualization based on the grammer of graphics.</p>
+<p>For this project the two major package we will use is the <code>pandas package</code> for data summarization and reshaping and <code>plotnine</code> for data visualization based on the grammer of graphics.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -261,24 +253,28 @@ widely used technique which categorizes items based on their sales value and dem
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> timedelta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hide code</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> custom_theme(figure_size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>)):</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        g.theme_minimal() <span class="op">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        g.theme(figure_size<span class="op">=</span>figure_size, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                plot_title<span class="op">=</span>g.element_text(color<span class="op">=</span><span class="st">"#545454"</span>, size<span class="op">=</span><span class="dv">14</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                axis_title<span class="op">=</span>g.element_text(color<span class="op">=</span><span class="st">"#4F4F4F"</span>, size<span class="op">=</span><span class="dv">11</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                axis_text<span class="op">=</span>g.element_text(color<span class="op">=</span><span class="st">"#474747"</span>))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> custom_theme(figure_size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>)):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        g.theme_minimal() <span class="op">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        g.theme(figure_size<span class="op">=</span>figure_size, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                plot_background<span class="op">=</span>g.element_rect(fill<span class="op">=</span><span class="st">"#FFFFFF"</span>, color<span class="op">=</span><span class="st">"#FFFFFF"</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                panel_background<span class="op">=</span>g.element_rect(fill<span class="op">=</span><span class="st">"#FFFFFF"</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                plot_title<span class="op">=</span>g.element_text(color<span class="op">=</span><span class="st">"#545454"</span>, size<span class="op">=</span><span class="dv">14</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                axis_title<span class="op">=</span>g.element_text(color<span class="op">=</span><span class="st">"#4F4F4F"</span>, size<span class="op">=</span><span class="dv">11</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                axis_text<span class="op">=</span>g.element_text(color<span class="op">=</span><span class="st">"#474747"</span>))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="import-transaction-data" class="level3">
 <h3 class="anchored" data-anchor-id="import-transaction-data">Import transaction data</h3>
-<p>It is important we have a correct+ record on the quantity demanded and revenue generated by each product over a specific period of time. [If you will like to follow this porject hands on, the data is avaliable here, and you can follow the instrution on how to download it from here].</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"scanner_data.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/akins11/SCM/main/posts/abc-xyz-analysis/data/scanner_data.csv"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(path)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
@@ -361,7 +357,7 @@ widely used technique which categorizes items based on their sales value and dem
 </section>
 <section id="quick-data-inspection" class="level3">
 <h3 class="anchored" data-anchor-id="quick-data-inspection">Quick data inspection</h3>
-<p>This inspection is to help us identify any issue pertaining+ to the overall data.</p>
+<p>This inspection is to help us identify any issue pertaining to the overall data.</p>
 <section id="data-struture" class="level4">
 <h4 class="anchored" data-anchor-id="data-struture">Data struture</h4>
 <div class="cell" data-execution_count="4">
@@ -384,21 +380,21 @@ dtypes: float64(2), int64(3), object(3)
 memory usage: 8.0+ MB</code></pre>
 </div>
 </div>
-<p>There are 131,706 records and 6 columns in total, there are no missing values here but the <code>Date</code> variable have an object data type instead of datetime datatime data type, [we will change that below] also we will drop the <code>Unnamed: 0</code> column which is not usefull to us.</p>
+<p>There are 131,706 rows and 6 columns in total. The <code>Date</code> variable have an object data type instead of datetime data type, also we will drop the <code>Unnamed: 0</code> column which is not useful for this analysis.</p>
 </section>
 <section id="sku-summary" class="level4">
 <h4 class="anchored" data-anchor-id="sku-summary">SKU summary</h4>
-<p>Product SKU which stands for stock keeping unit is a unique identifier code assigned to each item in a company’s inventory and they are used to identify, track and manage inventories. To get the total number of unique SKU we will use the <code>nunique()</code> method from pandas DataFrame.</p>
+<p>Product <code>SKU</code> which stands for <code>stock keeping unit</code> is a unique identifier code assigned to each item in a company’s inventory and they are used to identify, track and manage inventories. We can check the total number of unique SKU by using the <code>nunique()</code> method from pandas DataFrame.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f" </span><span class="sc">{</span>df[<span class="st">'SKU'</span>]<span class="sc">.</span>nunique() <span class="sc">:,}</span><span class="ss"> "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"There are </span><span class="sc">{</span>df[<span class="st">'SKU'</span>]<span class="sc">.</span>nunique() <span class="sc">:,}</span><span class="ss"> unique SKUs."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> 5,242 </code></pre>
+<pre><code>There are 5,242 unique SKUs.</code></pre>
 </div>
 </div>
 </section>
 <section id="quantity-sales-summary" class="level4">
 <h4 class="anchored" data-anchor-id="quantity-sales-summary">Quantity &amp; sales summary</h4>
-<p>A descriptive summary of <code>Quantity</code> which is the amount of a particular product customers are willing to purchase, shows that majority of the orders placed are for a single unit we can also see a major outlier of 400 representing the highest order.</p>
+<p>A descriptive summary of <code>Quantity</code> which is the amount of a particular product customers are willing to purchase, and it appears that majority of the orders placed are for a single unit we can also see a major outlier of 400 representing the highest order.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"Quantity"</span>, <span class="st">"Sales_Amount"</span>]].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -459,12 +455,20 @@ memory usage: 8.0+ MB</code></pre>
 </div>
 </div>
 </div>
-<p>While the median <code>Sales_Amount</code> made is 6.92.</p>
 </section>
 </section>
 <section id="data-cleaning" class="level3">
 <h3 class="anchored" data-anchor-id="data-cleaning">Data cleaning</h3>
-<p>We will perform some data cleaning such as: &gt; Removing <code>Unnamed: 0</code> and <code>SKU_Category</code> columns which are not usefull for this analysis &gt; Changing the <code>Date</code> variable to a datetime data type using the pandas <code>to_datetime()</code> function. &gt; And finally convert all column name to lower case.</p>
+<p>We will perform some data cleaning such as:</p>
+<blockquote class="blockquote">
+<p>Remove <code>Unnamed: 0</code> and <code>SKU_Category</code> columns which are not useful for this analysis.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Changing the <code>Date</code> variable to a datetime data type using the pandas <code>to_datetime()</code> function.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>And finally convert all column names to lower case.</p>
+</blockquote>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    df</span>
@@ -545,7 +549,7 @@ memory usage: 8.0+ MB</code></pre>
 </section>
 <section id="product-orders-for-a-12-month-period" class="level3">
 <h3 class="anchored" data-anchor-id="product-orders-for-a-12-month-period">Product orders for a 12-month period</h3>
-<p>To accurately determine the usage and demand for each item in the inventory, we will use a 12-month period as it provides sufficient amount of data that provides a representative sample of the patterns and trends of demand over time. To do this we will filter orders for only 2017.</p>
+<p>To accurately determine the demand and variability for each product, we will use a 12-month period which provides sufficient amount of data for the analysis and also a representative sample of the patterns and trends of demand over time. To do this we will filter orders made in 2017 alone.</p>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_m <span class="op">=</span> (</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    df</span>
@@ -556,9 +560,22 @@ memory usage: 8.0+ MB</code></pre>
 </section>
 <section id="abc-inventory-classification" class="level2">
 <h2 class="anchored" data-anchor-id="abc-inventory-classification">ABC inventory classification</h2>
-<p>ABC inventory classification helps business group items based on demand, cost, revenue and overall relative importance to the business. It helps them understand+ which of their products or services [are most critical to financial success].</p>
-<p>It categorizes+ items into three separate classes where: &gt; Items in <code>class A</code> are considared to have high demand volume and revenue, Majorly <code>80%</code> overall. &gt; Items in <code>class B</code> have slightly moderate demand volume and revenue, considared to be <code>15%</code> of the overall total. &gt; Items in <code>class C</code> have reletively low demand volumne and revneue.</p>
-<p>To categorise each product we will perform the following operations: * Group the transaction data by the SKU and extract the number of times each product was purchased, the total demand for the product and the sum of all sales amount. * The resulting data will be arranged from the highest revenue to the lowest revenue.</p>
+<p>ABC inventory classification helps business group items based on demand, cost, revenue and the overall relative importance of the item to the business. It helps them realize which of their products or services have the most significant impact on their financial success.</p>
+<p>It categories items into three separate classes where:</p>
+<blockquote class="blockquote">
+<p>Items in <code>class A</code> are considared to have high demand volume and revenue, majorly <code>80%</code> overall.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Items in <code>class B</code> have slightly moderate demand volume and revenue, considared to be <code>15%</code> of the overall total.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Items in <code>class C</code> have reletively low demand volume and revenue.</p>
+</blockquote>
+<p>To group each product, we will perform the following operations:</p>
+<ul>
+<li><p>Group the transaction data by SKU and extract the number of times each product was purchased, the total demand for the product and the sum of all sales amount.</p></li>
+<li><p>The resulting data from the previous step will be arranged from the highest revenue to the lowest revenue (e.i in descending order).</p></li>
+</ul>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>abc_df <span class="op">=</span> (</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    df_m</span>
@@ -633,7 +650,9 @@ memory usage: 8.0+ MB</code></pre>
 <li><p>While products in <code>class C</code> are those that fall withing the remaining <code>5%</code> of revenue generated.</p></li>
 </ul>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> abc_classify(cum_percent):</span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_abc_item(cum_percent):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Assign (ABC) classification to each product based on the their percentage of</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">    revenue contribution. </span></span>
@@ -648,6 +667,7 @@ memory usage: 8.0+ MB</code></pre>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'B'</span></span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'C'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>abc_df <span class="op">=</span> abc_df.assign(</span>
@@ -656,7 +676,7 @@ memory usage: 8.0+ MB</code></pre>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the percentage of total revenue.</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    revenue_running_percent <span class="op">=</span> <span class="kw">lambda</span> d: (d[<span class="st">"revenue_cumsum"</span>] <span class="op">/</span> d[<span class="st">"total_revenue"</span>].<span class="bu">sum</span>()) <span class="op">*</span> <span class="dv">100</span>,</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># aasign each product a class.</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    abc_class <span class="op">=</span> <span class="kw">lambda</span> d: d[<span class="st">"revenue_running_percent"</span>].<span class="bu">apply</span>(abc_classify),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    abc_class <span class="op">=</span> <span class="kw">lambda</span> d: d[<span class="st">"revenue_running_percent"</span>].<span class="bu">apply</span>(classify_abc_item),</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># simple rank to each product based on the its percentage of revenue generated.</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    rank  <span class="op">=</span> <span class="kw">lambda</span> d: d[<span class="st">"revenue_running_percent"</span>].rank().astype(<span class="bu">int</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -741,6 +761,7 @@ memory usage: 8.0+ MB</code></pre>
 </div>
 </div>
 </div>
+<p><br></p>
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary</h3>
 <div class="cell" data-execution_count="12">
@@ -754,6 +775,8 @@ memory usage: 8.0+ MB</code></pre>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="13">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> abc_plot(var: <span class="bu">str</span>, y_title: <span class="bu">str</span>, title: <span class="bu">str</span>):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        g.ggplot(data<span class="op">=</span>temp.assign(prop <span class="op">=</span> <span class="kw">lambda</span> d: (d[var] <span class="op">/</span> d[var].<span class="bu">sum</span>())<span class="op">*</span><span class="dv">100</span>), </span>
@@ -769,32 +792,37 @@ memory usage: 8.0+ MB</code></pre>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        g.labs(x<span class="op">=</span><span class="st">"Class"</span>, y<span class="op">=</span>y_title, title<span class="op">=</span>title) <span class="op">+</span></span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        custom_theme()</span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="number-of-products" class="level5">
 <h5 class="anchored" data-anchor-id="number-of-products">Number of Products</h5>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>abc_plot(var<span class="op">=</span><span class="st">"total_products"</span>, y_title<span class="op">=</span><span class="st">"No. Products"</span>, title<span class="op">=</span><span class="st">"Number of Products in Each Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>abc_plot(var<span class="op">=</span><span class="st">"total_products"</span>, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         y_title<span class="op">=</span><span class="st">"No. Products"</span>, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Number of Products in Each Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>&lt;ggplot: (193134129585)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140548473745)&gt;</code></pre>
 </div>
 </div>
-<p>Majority of all product are in the <code>C class</code> while the lowest number of product A large number of products about 51.4% falls within the <code>class C</code> boundary which have the lowest demand and revenue generated while 21.7% of all products falls within the top 80% generating the highest revenue.</p>
+<p>A large number of products, e.i about 51.4% fall within the <code>class C</code> boundary which have the lowest demand and revenue generated while 21.7% of all products falls within the top 80% generating the highest revenue.</p>
 </section>
 <section id="product-demand" class="level5">
 <h5 class="anchored" data-anchor-id="product-demand">Product Demand</h5>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>abc_plot(var<span class="op">=</span><span class="st">"total_demand"</span>, y_title<span class="op">=</span><span class="st">"Qty. Demand"</span>, title<span class="op">=</span><span class="st">"Total Quantity Demand by (ABC) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>abc_plot(var<span class="op">=</span><span class="st">"total_demand"</span>, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         y_title<span class="op">=</span><span class="st">"Qty. Demand"</span>, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Total Quantity Demand by (ABC) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>&lt;ggplot: (193113536473)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140548473790)&gt;</code></pre>
 </div>
 </div>
-<p>classification summary by the quantity show how much of products in class A where in demand no suprise here as these product generate more revenue but for class C products, despite that the constitute 51.4% of all SKU they only have 9.9% of the total order quantity.</p>
+<p>Product classification summary by the quantity show how much of products in <code>class A</code> where in demand. There are no suprises here given that these products generate more revenue. For class C products, despite comprising of 51.4% of all products, they only have 9.9% of the total order quantity.</p>
 </section>
 <section id="revenue" class="level5">
 <h5 class="anchored" data-anchor-id="revenue">Revenue</h5>
@@ -810,25 +838,25 @@ memory usage: 8.0+ MB</code></pre>
 <p><img src="index_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>&lt;ggplot: (193134543662)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140548473667)&gt;</code></pre>
 </div>
 </div>
-<p>the plot show the <code>80/15/5 split</code> we did on the total revenue generated and as expected all products generating more demand and revenue are in the class A category, it is important for inventory managers to create an <code>optimize inventory level</code> for such product that reduce the overall carry cost, they should also <code>prioritize supplier relationship</code> to ensure adequate access to such products, and lastly there should be a huge <code>focus on quality</code> as anything less than that can lead to decrease in demand and eventually low revenue.</p>
+<p>A visual representation of the <code>80/15/5 split</code> of the total revenue generated and as expected all products generating more demand and revenue are in the class A category. It is important for inventory managers to create an <code>optimize inventory level</code> for such product to meet demand, they should also <code>prioritize supplier relationship</code> to ensure adequate access to such products, and lastly there should be a huge <code>focus on quality</code> as anything less than that can lead to decrease in demand and eventually low revenue.</p>
 </section>
 </section>
 </section>
-<section id="xyz-classification" class="level2">
-<h2 class="anchored" data-anchor-id="xyz-classification">XYZ Classification</h2>
-<p>One major aspect ABC analysis considers is the importance of items based on their demand and revenue leaving out other factors such as demand variability and sessionality. This gap can be solved using the XYZ inventory classification which categorize products according to their level of demand variability.<br>
+<section id="xyz-inventory-classification" class="level2">
+<h2 class="anchored" data-anchor-id="xyz-inventory-classification">XYZ inventory classification</h2>
+<p>The major aspect of ABC analysis is it focus on valuable items based on their demand and revenue with less emphasis on other factors such as demand variability and sessionality. This gap can be bridged using the XYZ inventory classification which categorize products according to their level of demand variability.<br>
 There are three categories in XYZ analysis which are:</p>
 <blockquote class="blockquote">
 <p><code>Class X</code>: These are items with low demand variability, they are less challenging to manage because of their predictable demand patterns.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><code>Class Y</code>: Items in this class have a moderate demand variability they are less easer to manage than items in class X but have better predictable patterns than items in class z.</p>
+<p><code>Class Y</code>: Items in this class have a moderate demand variability, but they are not easy to manage unlike items in class X, but they have better predictable patterns than items in class Z.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><code>Class Z</code>: There is a high demand variability in items that falls within this category, demand for product are less stable and predictable.</p>
+<p><code>Class Z</code>: There are high demand variability in items that falls within this category, and demand for product are less stable and predictable.</p>
 </blockquote>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -837,16 +865,16 @@ There are three categories in XYZ analysis which are:</p>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Month"</span>, y<span class="op">=</span><span class="st">"Quantity"</span>, title<span class="op">=</span><span class="st">"Quantity Demand by Month"</span>) <span class="op">+</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    g.theme(figure_size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>)) </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="17">
-<pre><code>&lt;ggplot: (193133998062)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140548473736)&gt;</code></pre>
 </div>
 </div>
-<p>A rundown of the seasonality in the data shows that the total customer order by month have huge variablility across the year with its <code>lowest point in August</code> while its <code>peaked in December</code>. It is important to also note that order started to increase from Match to May after that a sudden drop in order from June to August began.</p>
+<p>A rundown of the seasonality in the data indicate that the total customer order by month have huge variablility across the year with its <code>lowest point in August</code> while its <code>peaked in December</code>. It is crucial to note that there was a surge in order from March to May followed by an abrupt decline in order from June to August.</p>
 <div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>df_m.groupby(<span class="st">"month"</span>)[<span class="st">"sales_amount"</span>].<span class="bu">sum</span>().reset_index(), </span>
@@ -854,18 +882,17 @@ There are three categories in XYZ analysis which are:</p>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Month"</span>, y<span class="op">=</span><span class="st">"Revenue"</span>, title<span class="op">=</span><span class="st">"Total Revenue in Each Month"</span>) <span class="op">+</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    g.theme_minimal() <span class="op">+</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    g.theme(figure_size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>)) </span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    custom_theme() </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>&lt;ggplot: (193134591637)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140569378801)&gt;</code></pre>
 </div>
 </div>
 <p>Although there are similar seasonal pattern between the total quantity order and revenue, the upword trend in revenue appear to have began in January all the way through to May, before the expected drop in revenue similar to the quantity order.</p>
-<p>To draw out the XYZ class, we must first reshape the data where each row represent a single SKU and the 12 months spread across different columns with values of the total quantity demand for a product.</p>
+<p>To draw out the XYZ class, we must first reshape the data and make each row represent a single SKU and the 12 months spread across different columns with values of the total quantity demand for a particular SKU.</p>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> (</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    df_m</span>
@@ -1137,11 +1164,11 @@ There are three categories in XYZ analysis which are:</p>
 </div>
 </div>
 </div>
-<p><code>Coefficient of variation</code> or CV is a statistical measure that express the variability of a set of data as a percentage of its mean.</p>
+<p><code>Coefficient of variation</code> : or CV is a statistical measure that express the variability of a set of data as a percentage of its mean.</p>
 <blockquote class="blockquote">
 <p>Formula: CV = (standard deviation / mean)</p>
 </blockquote>
-<p>To measure each SKU variability, its CV will be used to determine the level of variation. when the value closer to zero, it indicate a small amount of variability, while value further from zero indecate a high amount of variability.</p>
+<p>To measure each SKU variability, its CV will be used to determine the level of variation. So values are closer to zero, it indicate a small amount of variability, while value further from zero indicate a high amount of variability.</p>
 <div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    xyz_df[<span class="st">"cov_demand"</span>]</span>
@@ -1182,25 +1209,27 @@ There are three categories in XYZ analysis which are:</p>
 </div>
 </div>
 </div>
-<p>The average CV of 1.75 indicate that the level of variability can be considered high since it falls within the CV range of 1-2, also the Maximum CV of 3.46 indicate that there are lot of products with high demand variability.</p>
+<p>The average CV of 1.75 indicate that the level of variability in demand is high since it falls within the CV range of 1-2, also the Maximum CV of 3.46 indicate that there are lot of products with high demand variability.</p>
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>xyz_df, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"cov_demand"</span>)) <span class="op">+</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    g.geom_histogram(color<span class="op">=</span><span class="st">"#FFF"</span>, bins <span class="op">=</span> <span class="dv">20</span>) <span class="op">+</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    g.ggtitle(<span class="st">"Coefficient of Variation"</span>) <span class="op">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    g.theme(figure_size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>&lt;ggplot: (193134606240)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140569381687)&gt;</code></pre>
 </div>
 </div>
 <section id="xyz-classes" class="level4">
 <h4 class="anchored" data-anchor-id="xyz-classes">XYZ classes</h4>
-<p>We will use the 0.5/1/&gt; 1 CV to group all product into XYZ classes. products with a CV less tha 0.5 indicate low demand variability and better forecating, this category of products will be assgined the X class while product with CV of 0.5 to 1 indicate a moderate demand variability and will make up the Y class. Products with CV greater than 1 are much harder to predict and are subject to high fluctuations throughout the year and they will be categorised as Z class.</p>
+<p>We will use the 0.5 / 1 / &gt;1 CV to group all product into XYZ classes. products with a CV less than 0.5 indicate low demand variability and better forecating, this category of products will be assgined the X class while product with CV that falls within 0.5 to 1 indicate a moderate demand variability and will make up the Y class. Products with CV greater than 1 are much harder to predict and are subject to high fluctuations throughout the year and they will be categorised as Z class.</p>
 <div class="cell" data-execution_count="23">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> xyz_classifer(cov): <span class="co"># change name</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Assign (XYZ) categories to each SKU based on their coefficient of </span></span>
@@ -1216,6 +1245,7 @@ There are three categories in XYZ analysis which are:</p>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Y'</span></span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Z'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> xyz_df.assign(xyz_class <span class="op">=</span> xyz_df[<span class="st">"cov_demand"</span>].<span class="bu">apply</span>(xyz_classifer))</span>
@@ -1259,19 +1289,18 @@ There are three categories in XYZ analysis which are:</p>
 </div>
 </div>
 </div>
-<p>Based on the number of product in each class, there are more products in the Z class than other classes this is expected given the distribution analysis earlier.</p>
+<p>Based on the number of product in each class, there are more products in the Z class than other classes, this is expected given the CV distribution earlier.</p>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabular Summary</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    xyz_df</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"xyz_class"</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        .agg(total_product <span class="op">=</span> (<span class="st">"sku"</span>, <span class="st">"nunique"</span>),</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>             total_demand <span class="op">=</span> (<span class="st">"total_demand"</span>, <span class="st">"sum"</span>),</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>             std_of_demand <span class="op">=</span> (<span class="st">"std_demand"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>             average_demand <span class="op">=</span> (<span class="st">"avg_demand"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>             average_cov <span class="op">=</span> (<span class="st">"cov_demand"</span>, <span class="st">"mean"</span>))</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    xyz_df</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"xyz_class"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        .agg(total_product <span class="op">=</span> (<span class="st">"sku"</span>, <span class="st">"nunique"</span>),</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>             total_demand <span class="op">=</span> (<span class="st">"total_demand"</span>, <span class="st">"sum"</span>),</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>             std_of_demand <span class="op">=</span> (<span class="st">"std_demand"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>             average_demand <span class="op">=</span> (<span class="st">"avg_demand"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>             average_cov <span class="op">=</span> (<span class="st">"cov_demand"</span>, <span class="st">"mean"</span>))</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 
 <div>
@@ -1397,7 +1426,7 @@ There are three categories in XYZ analysis which are:</p>
 <p><img src="index_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="27">
-<pre><code>&lt;ggplot: (193134620162)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140569489601)&gt;</code></pre>
 </div>
 </div>
 <p>Examining each category represented on the graph, class X have the least amount of flutuations compared to class Y and class Z, class Z represent a clear case of high volatility on quantity demand across all months.</p>
@@ -1405,9 +1434,9 @@ There are three categories in XYZ analysis which are:</p>
 </section>
 <section id="abc-xyz-inventory-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="abc-xyz-inventory-analysis">ABC-XYZ inventory analysis</h2>
-<p>Combining both ABC and XYZ classes provides inventory managers with a clear insight on the most important+ items in the inventory, based on the amount of revenue they contribute and also their demand patterns. This information can help manager determine the approprate+ stock levels which lower the risk of stockouts or overstocking.</p>
-<section id="merge-tables" class="level6">
-<h6 class="anchored" data-anchor-id="merge-tables">Merge tables</h6>
+<p>Combining both ABC and XYZ classes provides inventory managers with a clear insight on the most important items in the inventory, based on the amount of revenue they contribute and also their demand patterns. This information can help them determine the appropriate stock levels which reduces the risk of either stockouts or overstocking.</p>
+<section id="merge-abc-and-xyz-class-tables" class="level6">
+<h6 class="anchored" data-anchor-id="merge-abc-and-xyz-class-tables">Merge ABC and XYZ class tables</h6>
 <div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>abc_xyz <span class="op">=</span> abc_df[[<span class="st">"sku"</span>, <span class="st">"total_revenue"</span>, <span class="st">"abc_class"</span>]].merge(</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    xyz_df[[<span class="st">"sku"</span>, <span class="st">"std_demand"</span>, <span class="st">"total_demand"</span>, <span class="st">"avg_demand"</span>, <span class="st">"cov_demand"</span>, <span class="st">"xyz_class"</span>]],</span>
@@ -1587,16 +1616,16 @@ There are three categories in XYZ analysis which are:</p>
 </div>
 </div>
 </div>
-<p>This combination+ forms 9 unique classes which are AX, AY, AZ, BX, BY, BZ, CX, CY, and CZ and each SKU falls under one of them. By summary each combined class represent+ the following:</p>
-<p><code>AX</code> : This category contain+ high revenue generating items with a stable demand which makes them easy to forecast.</p>
-<p><code>AY</code> : Also a high revenue genrating items but with less stable demand as demand are varies.</p>
+<p>This combination create 9 unique classes which are AX, AY, AZ, BX, BY, BZ, CX, CY, and CZ and each SKU falls under one of them. Each combined class can be summarised as follow:</p>
+<p><code>AX</code> : This category consist of high revenue generating items with a stable demand which makes them easy to forecast.</p>
+<p><code>AY</code> : Also a high revenue generating items but with less stable demand, as demand varies over time.</p>
 <p><code>AZ</code> : They are tough to forecaset because of their irregular demand nature, but they are also a high revenue generating item.</p>
 <p><code>BX</code> : They generate moderate revenue and have a stable demand across all month.</p>
 <p><code>BY</code> : Items in this category are less stable based on demand but they generate a moderate amount of revenue.</p>
-<p><code>BZ</code> : Revenue generated from items in this category are moderate but forecasting the demand for them can be very challenging.</p>
+<p><code>BZ</code> : Revenue generated from items in this category are moderate but forecasting demand for them can be very challenging.</p>
 <p><code>CX</code> : Items in this category are easy to forecast but they generate a very low amount of revenue.</p>
-<p><code>CY</code> : This category contains+ items with less stable demand and also low revenue.</p>
-<p><code>CZ</code> : The items here are difficult to forecast because demand may be periodic they also generate a very small amount of revenue.</p>
+<p><code>CY</code> : This category includes items with less stable demand and also low revenue.</p>
+<p><code>CZ</code> : The items here are difficult to forecast because demand may be periodic and they also generate a very small amount of revenue.</p>
 <div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> (</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    abc_xyz</span>
@@ -1703,6 +1732,8 @@ There are three categories in XYZ analysis which are:</p>
 </div>
 </div>
 <div class="cell" data-execution_count="31">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> abc_xyz_plot(var: <span class="bu">str</span>, y_title: <span class="bu">str</span>, title: <span class="bu">str</span>):</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>        g.ggplot(data<span class="op">=</span>temp, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"abc_xyz_class"</span>, y<span class="op">=</span>var)) <span class="op">+</span></span>
@@ -1711,6 +1742,7 @@ There are three categories in XYZ analysis which are:</p>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        g.scale_y_continuous(labels<span class="op">=</span><span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        custom_theme()</span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_sku"</span>, </span>
@@ -1720,10 +1752,10 @@ There are three categories in XYZ analysis which are:</p>
 <p><img src="index_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="32">
-<pre><code>&lt;ggplot: (193134717352)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140569427107)&gt;</code></pre>
 </div>
 </div>
-<p><code>47.6% of all products falls under the CZ class</code>, with this insight managers+ needs to develope a responsive or adaptive supply chain for these products which can instantly adjust to changes in demand, where inventory is oredered and received only when it is needed, which reduces carrying cost.</p>
+<p><code>47.6% of all products fall under the CZ class</code>, with this insight inventory managers need to develope a responsive or adaptive supply chain for these products that can instantly adjust to changes in demand, where inventory is oredered and received only when it is needed, which reduces carrying cost.</p>
 <div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_demand"</span>, </span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"Demand"</span>, </span>
@@ -1732,10 +1764,10 @@ There are three categories in XYZ analysis which are:</p>
 <p><img src="index_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="33">
-<pre><code>&lt;ggplot: (193134759729)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140570206932)&gt;</code></pre>
 </div>
 </div>
-<p>For quantity demand, <code>class AX holds the majority with 44% of all demand</code>. Since only 7.86% of all product falls under the AX class, managers+ can bring in more products from other class by reviewing price strategy, imporving marketing and promotion and also consider bundling or cross-selling with other high performing products.</p>
+<p>For quantity demand, <code>class AX holds the majority with 44% of all demand</code>. Since only 7.86% of all product falls under the AX class, inventory managers can bring in more products from other class by reviewing price strategy, imporving marketing and promotion and also consider bundling or cross-selling with other high performing products such as products in class AX and AY.</p>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_revenue"</span>, </span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"Revenue"</span>, </span>
@@ -1744,10 +1776,11 @@ There are three categories in XYZ analysis which are:</p>
 <p><img src="index_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>&lt;ggplot: (193007368063)&gt;</code></pre>
+<pre><code>&lt;ggplot: (140570189963)&gt;</code></pre>
 </div>
 </div>
-<p>Class AX and AY both contains+ majority of products that generate the highest revenue, a combined 72% of all revenue. managers+ should consider conducting market research on products generating less revenue to identify trends and customer preferences. This can help them identify new opputunities and adjust product features and marketing accordingly.</p>
+<p>Class AX and AY both contains majority of products that generate the highest revenue, a combined 72% of revenue. Inventory managers should consider conducting market research on products generating less revenue to identify trends and customer preferences. This can help them identify new opputunities and adjust product features and marketing accordingly.</p>
+<p>In summary ABC-XYZ analysis provides insight that inventory managers can utilize to optimize inventory business operations, by indentifying the most critical items and assigning appproprate inventory control policies, businesses can better manage their stock and ultimately improve customer satisfaction. Additionally, its can help inventory managers to identify opportunities for process improvement, enhance decision-making, and allocate resources effectively.</p>
 
 
 </section>
