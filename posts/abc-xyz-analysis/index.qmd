@@ -239,7 +239,7 @@ Product classification summary by the quantity show how much of products in `cla
     g.ggplot(data=temp, mapping=g.aes(x="abc_class", y="total_revenue")) +
     g.geom_col() +
     g.scale_y_continuous(labels = lambda l: ["{:,.0f}".format(v) for v in l]) +
-    g.labs(x="Class", y="Revenue", title="Total Revenu by (ABC) Class") +
+    g.labs(x="Class", y="Revenue", title="Total Revenue by (ABC) Class") +
     custom_theme()
 )
 ```
@@ -360,7 +360,7 @@ We will use the 0.5 / 1 / >1 CV to group all product into XYZ classes. products 
 
 ```{python}
 #| code-fold: true
-def xyz_classifer(cov): # change name
+def classify_xyz_item(cov): 
     """
     Assign (XYZ) categories to each SKU based on their coefficient of 
     variation (CV) in order quantity.
@@ -379,7 +379,7 @@ def xyz_classifer(cov): # change name
 
 
 ```{python}
-xyz_df = xyz_df.assign(xyz_class = xyz_df["cov_demand"].apply(xyz_classifer))
+xyz_df = xyz_df.assign(xyz_class = xyz_df["cov_demand"].apply(classify_xyz_item))
 
 (
     xyz_df["xyz_class"]

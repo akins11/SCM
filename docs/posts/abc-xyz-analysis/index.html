@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.149">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -144,29 +115,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Supply Chain Management Analysis</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">About</a>
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/akins11/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/akins11/" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/Akinwande_ay24?s=09"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/Akinwande_ay24?s=09" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -200,6 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <p class="date">April 10, 2023</p>
       </div>
     </div>
+    
       
     </div>
     
@@ -276,81 +249,82 @@ Inventory classification using the ABC-XYZ analysis is a widely used technique w
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>Date</th>
-      <th>Customer_ID</th>
-      <th>Transaction_ID</th>
-      <th>SKU_Category</th>
-      <th>SKU</th>
-      <th>Quantity</th>
-      <th>Sales_Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>2017-01-02</td>
-      <td>2547</td>
-      <td>1</td>
-      <td>X52</td>
-      <td>0EM7L</td>
-      <td>1.0</td>
-      <td>3.13</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>2017-01-02</td>
-      <td>822</td>
-      <td>2</td>
-      <td>2ML</td>
-      <td>68BRQ</td>
-      <td>1.0</td>
-      <td>5.46</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>2017-01-02</td>
-      <td>3686</td>
-      <td>3</td>
-      <td>0H2</td>
-      <td>CZUZX</td>
-      <td>1.0</td>
-      <td>6.35</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>2017-01-02</td>
-      <td>3719</td>
-      <td>4</td>
-      <td>0H2</td>
-      <td>549KK</td>
-      <td>1.0</td>
-      <td>5.59</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>2017-01-02</td>
-      <td>9200</td>
-      <td>5</td>
-      <td>0H2</td>
-      <td>K8EHH</td>
-      <td>1.0</td>
-      <td>6.88</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Customer_ID</th>
+<th data-quarto-table-cell-role="th">Transaction_ID</th>
+<th data-quarto-table-cell-role="th">SKU_Category</th>
+<th data-quarto-table-cell-role="th">SKU</th>
+<th data-quarto-table-cell-role="th">Quantity</th>
+<th data-quarto-table-cell-role="th">Sales_Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>2017-01-02</td>
+<td>2547</td>
+<td>1</td>
+<td>X52</td>
+<td>0EM7L</td>
+<td>1.0</td>
+<td>3.13</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>2017-01-02</td>
+<td>822</td>
+<td>2</td>
+<td>2ML</td>
+<td>68BRQ</td>
+<td>1.0</td>
+<td>5.46</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>2017-01-02</td>
+<td>3686</td>
+<td>3</td>
+<td>0H2</td>
+<td>CZUZX</td>
+<td>1.0</td>
+<td>6.35</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>2017-01-02</td>
+<td>3719</td>
+<td>4</td>
+<td>0H2</td>
+<td>549KK</td>
+<td>1.0</td>
+<td>5.59</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>2017-01-02</td>
+<td>9200</td>
+<td>5</td>
+<td>0H2</td>
+<td>K8EHH</td>
+<td>1.0</td>
+<td>6.88</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -398,60 +372,61 @@ memory usage: 8.0+ MB</code></pre>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"Quantity"</span>, <span class="st">"Sales_Amount"</span>]].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Quantity</th>
-      <th>Sales_Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>131706.000000</td>
-      <td>131706.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>1.485311</td>
-      <td>11.981524</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>3.872667</td>
-      <td>19.359699</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>0.010000</td>
-      <td>0.020000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>1.000000</td>
-      <td>4.230000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>1.000000</td>
-      <td>6.920000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>1.000000</td>
-      <td>12.330000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>400.000000</td>
-      <td>707.730000</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Quantity</th>
+<th data-quarto-table-cell-role="th">Sales_Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>131706.000000</td>
+<td>131706.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>1.485311</td>
+<td>11.981524</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>3.872667</td>
+<td>19.359699</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>0.010000</td>
+<td>0.020000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>1.000000</td>
+<td>4.230000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>1.000000</td>
+<td>6.920000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>1.000000</td>
+<td>12.330000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>400.000000</td>
+<td>707.730000</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -480,69 +455,70 @@ memory usage: 8.0+ MB</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>date</th>
-      <th>customer_id</th>
-      <th>transaction_id</th>
-      <th>sku</th>
-      <th>quantity</th>
-      <th>sales_amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2017-01-02</td>
-      <td>2547</td>
-      <td>1</td>
-      <td>0EM7L</td>
-      <td>1.0</td>
-      <td>3.13</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2017-01-02</td>
-      <td>822</td>
-      <td>2</td>
-      <td>68BRQ</td>
-      <td>1.0</td>
-      <td>5.46</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2017-01-02</td>
-      <td>3686</td>
-      <td>3</td>
-      <td>CZUZX</td>
-      <td>1.0</td>
-      <td>6.35</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2017-01-02</td>
-      <td>3719</td>
-      <td>4</td>
-      <td>549KK</td>
-      <td>1.0</td>
-      <td>5.59</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2017-01-02</td>
-      <td>9200</td>
-      <td>5</td>
-      <td>K8EHH</td>
-      <td>1.0</td>
-      <td>6.88</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">customer_id</th>
+<th data-quarto-table-cell-role="th">transaction_id</th>
+<th data-quarto-table-cell-role="th">sku</th>
+<th data-quarto-table-cell-role="th">quantity</th>
+<th data-quarto-table-cell-role="th">sales_amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2017-01-02</td>
+<td>2547</td>
+<td>1</td>
+<td>0EM7L</td>
+<td>1.0</td>
+<td>3.13</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2017-01-02</td>
+<td>822</td>
+<td>2</td>
+<td>68BRQ</td>
+<td>1.0</td>
+<td>5.46</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2017-01-02</td>
+<td>3686</td>
+<td>3</td>
+<td>CZUZX</td>
+<td>1.0</td>
+<td>6.35</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2017-01-02</td>
+<td>3719</td>
+<td>4</td>
+<td>549KK</td>
+<td>1.0</td>
+<td>5.59</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2017-01-02</td>
+<td>9200</td>
+<td>5</td>
+<td>K8EHH</td>
+<td>1.0</td>
+<td>6.88</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -589,57 +565,58 @@ memory usage: 8.0+ MB</code></pre>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>abc_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>sku</th>
-      <th>unique_purchases</th>
-      <th>total_demand</th>
-      <th>total_revenue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>3YDVF</td>
-      <td>1</td>
-      <td>926.0</td>
-      <td>29419.35</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>LJ26I</td>
-      <td>1</td>
-      <td>632.0</td>
-      <td>13571.45</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>IRQZ4</td>
-      <td>1</td>
-      <td>321.0</td>
-      <td>11681.63</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DWJC4</td>
-      <td>1</td>
-      <td>823.0</td>
-      <td>10592.09</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>44RUE</td>
-      <td>1</td>
-      <td>218.0</td>
-      <td>8942.63</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sku</th>
+<th data-quarto-table-cell-role="th">unique_purchases</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+<th data-quarto-table-cell-role="th">total_revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>3YDVF</td>
+<td>1</td>
+<td>926.0</td>
+<td>29419.35</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>LJ26I</td>
+<td>1</td>
+<td>632.0</td>
+<td>13571.45</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>IRQZ4</td>
+<td>1</td>
+<td>321.0</td>
+<td>11681.63</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DWJC4</td>
+<td>1</td>
+<td>823.0</td>
+<td>10592.09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>44RUE</td>
+<td>1</td>
+<td>218.0</td>
+<td>8942.63</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -683,81 +660,82 @@ memory usage: 8.0+ MB</code></pre>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>abc_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>sku</th>
-      <th>unique_purchases</th>
-      <th>total_demand</th>
-      <th>total_revenue</th>
-      <th>revenue_cumsum</th>
-      <th>revenue_running_percent</th>
-      <th>abc_class</th>
-      <th>rank</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>3YDVF</td>
-      <td>1</td>
-      <td>926.0</td>
-      <td>29419.35</td>
-      <td>29419.35</td>
-      <td>1.866325</td>
-      <td>A</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>LJ26I</td>
-      <td>1</td>
-      <td>632.0</td>
-      <td>13571.45</td>
-      <td>42990.80</td>
-      <td>2.727279</td>
-      <td>A</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>IRQZ4</td>
-      <td>1</td>
-      <td>321.0</td>
-      <td>11681.63</td>
-      <td>54672.43</td>
-      <td>3.468347</td>
-      <td>A</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DWJC4</td>
-      <td>1</td>
-      <td>823.0</td>
-      <td>10592.09</td>
-      <td>65264.52</td>
-      <td>4.140295</td>
-      <td>A</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>44RUE</td>
-      <td>1</td>
-      <td>218.0</td>
-      <td>8942.63</td>
-      <td>74207.15</td>
-      <td>4.707603</td>
-      <td>A</td>
-      <td>5</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sku</th>
+<th data-quarto-table-cell-role="th">unique_purchases</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+<th data-quarto-table-cell-role="th">total_revenue</th>
+<th data-quarto-table-cell-role="th">revenue_cumsum</th>
+<th data-quarto-table-cell-role="th">revenue_running_percent</th>
+<th data-quarto-table-cell-role="th">abc_class</th>
+<th data-quarto-table-cell-role="th">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>3YDVF</td>
+<td>1</td>
+<td>926.0</td>
+<td>29419.35</td>
+<td>29419.35</td>
+<td>1.866325</td>
+<td>A</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>LJ26I</td>
+<td>1</td>
+<td>632.0</td>
+<td>13571.45</td>
+<td>42990.80</td>
+<td>2.727279</td>
+<td>A</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>IRQZ4</td>
+<td>1</td>
+<td>321.0</td>
+<td>11681.63</td>
+<td>54672.43</td>
+<td>3.468347</td>
+<td>A</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DWJC4</td>
+<td>1</td>
+<td>823.0</td>
+<td>10592.09</td>
+<td>65264.52</td>
+<td>4.140295</td>
+<td>A</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>44RUE</td>
+<td>1</td>
+<td>218.0</td>
+<td>8942.63</td>
+<td>74207.15</td>
+<td>4.707603</td>
+<td>A</td>
+<td>5</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -803,23 +781,17 @@ memory usage: 8.0+ MB</code></pre>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>&lt;ggplot: (140548473745)&gt;</code></pre>
-</div>
 </div>
 <p>A large number of products, e.i about 51.4% fall within the <code>class C</code> boundary which have the lowest demand and revenue generated while 21.7% of all products falls within the top 80% generating the highest revenue.</p>
 </section>
 <section id="product-demand" class="level5">
 <h5 class="anchored" data-anchor-id="product-demand">Product Demand</h5>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>abc_plot(var<span class="op">=</span><span class="st">"total_demand"</span>, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         y_title<span class="op">=</span><span class="st">"Qty. Demand"</span>, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Total Quantity Demand by (ABC) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>abc_plot(var<span class="op">=</span><span class="st">"total_demand"</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>         y_title<span class="op">=</span><span class="st">"Qty. Demand"</span>, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Total Quantity Demand by (ABC) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>&lt;ggplot: (140548473790)&gt;</code></pre>
 </div>
 </div>
 <p>Product classification summary by the quantity show how much of products in <code>class A</code> where in demand. There are no suprises here given that these products generate more revenue. For class C products, despite comprising of 51.4% of all products, they only have 9.9% of the total order quantity.</p>
@@ -827,18 +799,15 @@ memory usage: 8.0+ MB</code></pre>
 <section id="revenue" class="level5">
 <h5 class="anchored" data-anchor-id="revenue">Revenue</h5>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>temp, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"abc_class"</span>, y<span class="op">=</span><span class="st">"total_revenue"</span>)) <span class="op">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    g.geom_col() <span class="op">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Class"</span>, y<span class="op">=</span><span class="st">"Revenue"</span>, title<span class="op">=</span><span class="st">"Total Revenu by (ABC) Class"</span>) <span class="op">+</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>temp, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"abc_class"</span>, y<span class="op">=</span><span class="st">"total_revenue"</span>)) <span class="op">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    g.geom_col() <span class="op">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Class"</span>, y<span class="op">=</span><span class="st">"Revenue"</span>, title<span class="op">=</span><span class="st">"Total Revenue by (ABC) Class"</span>) <span class="op">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>&lt;ggplot: (140548473667)&gt;</code></pre>
 </div>
 </div>
 <p>A visual representation of the <code>80/15/5 split</code> of the total revenue generated and as expected all products generating more demand and revenue are in the class A category. It is important for inventory managers to create an <code>optimize inventory level</code> for such product to meet demand, they should also <code>prioritize supplier relationship</code> to ensure adequate access to such products, and lastly there should be a huge <code>focus on quality</code> as anything less than that can lead to decrease in demand and eventually low revenue.</p>
@@ -859,308 +828,304 @@ There are three categories in XYZ analysis which are:</p>
 <p><code>Class Z</code>: There are high demand variability in items that falls within this category, and demand for product are less stable and predictable.</p>
 </blockquote>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>df_m.groupby(<span class="st">"month"</span>)[<span class="st">"quantity"</span>].<span class="bu">sum</span>().reset_index(), </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>             mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"factor(month)"</span>, y<span class="op">=</span><span class="st">"quantity"</span>, group<span class="op">=</span><span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Month"</span>, y<span class="op">=</span><span class="st">"Quantity"</span>, title<span class="op">=</span><span class="st">"Quantity Demand by Month"</span>) <span class="op">+</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>df_m.groupby(<span class="st">"month"</span>)[<span class="st">"quantity"</span>].<span class="bu">sum</span>().reset_index(), </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>             mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"factor(month)"</span>, y<span class="op">=</span><span class="st">"quantity"</span>, group<span class="op">=</span><span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Month"</span>, y<span class="op">=</span><span class="st">"Quantity"</span>, title<span class="op">=</span><span class="st">"Quantity Demand by Month"</span>) <span class="op">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<pre><code>&lt;ggplot: (140548473736)&gt;</code></pre>
 </div>
 </div>
 <p>A rundown of the seasonality in the data indicate that the total customer order by month have huge variablility across the year with its <code>lowest point in August</code> while its <code>peaked in December</code>. It is crucial to note that there was a surge in order from March to May followed by an abrupt decline in order from June to August.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>df_m.groupby(<span class="st">"month"</span>)[<span class="st">"sales_amount"</span>].<span class="bu">sum</span>().reset_index(), </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>             mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"factor(month)"</span>, y<span class="op">=</span><span class="st">"sales_amount"</span>, group<span class="op">=</span><span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Month"</span>, y<span class="op">=</span><span class="st">"Revenue"</span>, title<span class="op">=</span><span class="st">"Total Revenue in Each Month"</span>) <span class="op">+</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    custom_theme() </span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>df_m.groupby(<span class="st">"month"</span>)[<span class="st">"sales_amount"</span>].<span class="bu">sum</span>().reset_index(), </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>             mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"factor(month)"</span>, y<span class="op">=</span><span class="st">"sales_amount"</span>, group<span class="op">=</span><span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels <span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="st">"Month"</span>, y<span class="op">=</span><span class="st">"Revenue"</span>, title<span class="op">=</span><span class="st">"Total Revenue in Each Month"</span>) <span class="op">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    custom_theme() </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>&lt;ggplot: (140569378801)&gt;</code></pre>
 </div>
 </div>
 <p>Although there are similar seasonal pattern between the total quantity order and revenue, the upword trend in revenue appear to have began in January all the way through to May, before the expected drop in revenue similar to the quantity order.</p>
 <p>To draw out the XYZ class, we must first reshape the data and make each row represent a single SKU and the 12 months spread across different columns with values of the total quantity demand for a particular SKU.</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> (</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    df_m</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        .groupby([<span class="st">"sku"</span>, <span class="st">"month"</span>])[<span class="st">"quantity"</span>]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">sum</span>()</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        .pivot(index<span class="op">=</span><span class="st">"sku"</span>, columns<span class="op">=</span><span class="st">"month"</span>, values<span class="op">=</span><span class="st">"quantity"</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        .fillna(<span class="dv">0</span>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        .add_prefix(<span class="st">"M"</span>)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        .rename(index<span class="op">=</span>{<span class="st">"month"</span>: <span class="st">"index"</span>})</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>xyz_df.columns.name <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>xyz_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> (</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    df_m</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        .groupby([<span class="st">"sku"</span>, <span class="st">"month"</span>])[<span class="st">"quantity"</span>]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">sum</span>()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        .pivot(index<span class="op">=</span><span class="st">"sku"</span>, columns<span class="op">=</span><span class="st">"month"</span>, values<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        .fillna(<span class="dv">0</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        .add_prefix(<span class="st">"M"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        .rename(index<span class="op">=</span>{<span class="st">"month"</span>: <span class="st">"index"</span>})</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>xyz_df.columns.name <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>xyz_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>sku</th>
-      <th>M1</th>
-      <th>M2</th>
-      <th>M3</th>
-      <th>M4</th>
-      <th>M5</th>
-      <th>M6</th>
-      <th>M7</th>
-      <th>M8</th>
-      <th>M9</th>
-      <th>M10</th>
-      <th>M11</th>
-      <th>M12</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>00GVC</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>00OK1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>7.0</td>
-      <td>2.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0121I</td>
-      <td>1.0</td>
-      <td>3.0</td>
-      <td>4.0</td>
-      <td>2.0</td>
-      <td>1.0</td>
-      <td>5.0</td>
-      <td>3.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>4.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>01IEO</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>5.0</td>
-      <td>8.0</td>
-      <td>6.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>01IQT</td>
-      <td>0.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sku</th>
+<th data-quarto-table-cell-role="th">M1</th>
+<th data-quarto-table-cell-role="th">M2</th>
+<th data-quarto-table-cell-role="th">M3</th>
+<th data-quarto-table-cell-role="th">M4</th>
+<th data-quarto-table-cell-role="th">M5</th>
+<th data-quarto-table-cell-role="th">M6</th>
+<th data-quarto-table-cell-role="th">M7</th>
+<th data-quarto-table-cell-role="th">M8</th>
+<th data-quarto-table-cell-role="th">M9</th>
+<th data-quarto-table-cell-role="th">M10</th>
+<th data-quarto-table-cell-role="th">M11</th>
+<th data-quarto-table-cell-role="th">M12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>00GVC</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>00OK1</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>7.0</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0121I</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>3.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>01IEO</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>5.0</td>
+<td>8.0</td>
+<td>6.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>01IQT</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> xyz_df.assign(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the standard deviation of all months total demand.</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    std_demand   <span class="op">=</span> <span class="kw">lambda</span> d: d[[c <span class="cf">for</span> c <span class="kw">in</span> xyz_df.columns <span class="cf">if</span> <span class="st">"M"</span> <span class="kw">in</span> c]].std(axis<span class="op">=</span><span class="dv">1</span>),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the total demand across all months.</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    total_demand <span class="op">=</span> <span class="kw">lambda</span> d: d[[c <span class="cf">for</span> c <span class="kw">in</span> xyz_df.columns <span class="cf">if</span> <span class="st">"M"</span> <span class="kw">in</span> c]].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>),</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the average demand for each SKU.</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    avg_demand   <span class="op">=</span> <span class="kw">lambda</span> d: d[<span class="st">"total_demand"</span>] <span class="op">/</span> <span class="dv">12</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># coefficient of variation for each SKU</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    cov_demand   <span class="op">=</span> <span class="kw">lambda</span> d: d[<span class="st">"std_demand"</span>] <span class="op">/</span> d[<span class="st">"avg_demand"</span>]</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>xyz_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> xyz_df.assign(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the standard deviation of all months total demand.</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    std_demand   <span class="op">=</span> <span class="kw">lambda</span> d: d[[c <span class="cf">for</span> c <span class="kw">in</span> xyz_df.columns <span class="cf">if</span> <span class="st">"M"</span> <span class="kw">in</span> c]].std(axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the total demand across all months.</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    total_demand <span class="op">=</span> <span class="kw">lambda</span> d: d[[c <span class="cf">for</span> c <span class="kw">in</span> xyz_df.columns <span class="cf">if</span> <span class="st">"M"</span> <span class="kw">in</span> c]].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the average demand for each SKU.</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    avg_demand   <span class="op">=</span> <span class="kw">lambda</span> d: d[<span class="st">"total_demand"</span>] <span class="op">/</span> <span class="dv">12</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># coefficient of variation for each SKU</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    cov_demand   <span class="op">=</span> <span class="kw">lambda</span> d: d[<span class="st">"std_demand"</span>] <span class="op">/</span> d[<span class="st">"avg_demand"</span>]</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>xyz_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>sku</th>
-      <th>M1</th>
-      <th>M2</th>
-      <th>M3</th>
-      <th>M4</th>
-      <th>M5</th>
-      <th>M6</th>
-      <th>M7</th>
-      <th>M8</th>
-      <th>M9</th>
-      <th>M10</th>
-      <th>M11</th>
-      <th>M12</th>
-      <th>std_demand</th>
-      <th>total_demand</th>
-      <th>avg_demand</th>
-      <th>cov_demand</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>00GVC</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.389249</td>
-      <td>2.0</td>
-      <td>0.166667</td>
-      <td>2.335497</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>00OK1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>7.0</td>
-      <td>2.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2.0</td>
-      <td>2.022600</td>
-      <td>18.0</td>
-      <td>1.500000</td>
-      <td>1.348400</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0121I</td>
-      <td>1.0</td>
-      <td>3.0</td>
-      <td>4.0</td>
-      <td>2.0</td>
-      <td>1.0</td>
-      <td>5.0</td>
-      <td>3.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>4.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>1.311372</td>
-      <td>31.0</td>
-      <td>2.583333</td>
-      <td>0.507628</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>01IEO</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>5.0</td>
-      <td>8.0</td>
-      <td>6.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>4.0</td>
-      <td>2.020726</td>
-      <td>43.0</td>
-      <td>3.583333</td>
-      <td>0.563924</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>01IQT</td>
-      <td>0.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.792961</td>
-      <td>7.0</td>
-      <td>0.583333</td>
-      <td>1.359363</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sku</th>
+<th data-quarto-table-cell-role="th">M1</th>
+<th data-quarto-table-cell-role="th">M2</th>
+<th data-quarto-table-cell-role="th">M3</th>
+<th data-quarto-table-cell-role="th">M4</th>
+<th data-quarto-table-cell-role="th">M5</th>
+<th data-quarto-table-cell-role="th">M6</th>
+<th data-quarto-table-cell-role="th">M7</th>
+<th data-quarto-table-cell-role="th">M8</th>
+<th data-quarto-table-cell-role="th">M9</th>
+<th data-quarto-table-cell-role="th">M10</th>
+<th data-quarto-table-cell-role="th">M11</th>
+<th data-quarto-table-cell-role="th">M12</th>
+<th data-quarto-table-cell-role="th">std_demand</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+<th data-quarto-table-cell-role="th">avg_demand</th>
+<th data-quarto-table-cell-role="th">cov_demand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>00GVC</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.389249</td>
+<td>2.0</td>
+<td>0.166667</td>
+<td>2.335497</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>00OK1</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>7.0</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>2.022600</td>
+<td>18.0</td>
+<td>1.500000</td>
+<td>1.348400</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0121I</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>5.0</td>
+<td>3.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>1.311372</td>
+<td>31.0</td>
+<td>2.583333</td>
+<td>0.507628</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>01IEO</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>5.0</td>
+<td>8.0</td>
+<td>6.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>2.020726</td>
+<td>43.0</td>
+<td>3.583333</td>
+<td>0.563924</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>01IQT</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.792961</td>
+<td>7.0</td>
+<td>0.583333</td>
+<td>1.359363</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1170,58 +1135,56 @@ There are three categories in XYZ analysis which are:</p>
 </blockquote>
 <p>To measure each SKU variability, its CV will be used to determine the level of variation. So values are closer to zero, it indicate a small amount of variability, while value further from zero indicate a high amount of variability.</p>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    xyz_df[<span class="st">"cov_demand"</span>]</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        .agg([<span class="st">"min"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>])</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        .rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Stats"</span>, <span class="st">"cov_demand"</span>: <span class="st">"Coefficient of Variation"</span>})</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    xyz_df[<span class="st">"cov_demand"</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        .agg([<span class="st">"min"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        .rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Stats"</span>, <span class="st">"cov_demand"</span>: <span class="st">"Coefficient of Variation"</span>})</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Stats</th>
-      <th>Coefficient of Variation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>min</td>
-      <td>0.095766</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>mean</td>
-      <td>1.748931</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>max</td>
-      <td>3.464102</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Stats</th>
+<th data-quarto-table-cell-role="th">Coefficient of Variation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>min</td>
+<td>0.095766</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>mean</td>
+<td>1.748931</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>max</td>
+<td>3.464102</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>The average CV of 1.75 indicate that the level of variability in demand is high since it falls within the CV range of 1-2, also the Maximum CV of 3.46 indicate that there are lot of products with high demand variability.</p>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>xyz_df, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"cov_demand"</span>)) <span class="op">+</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    g.geom_histogram(color<span class="op">=</span><span class="st">"#FFF"</span>, bins <span class="op">=</span> <span class="dv">20</span>) <span class="op">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    g.ggtitle(<span class="st">"Coefficient of Variation"</span>) <span class="op">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>xyz_df, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"cov_demand"</span>)) <span class="op">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    g.geom_histogram(color<span class="op">=</span><span class="st">"#FFF"</span>, bins <span class="op">=</span> <span class="dv">20</span>) <span class="op">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    g.ggtitle(<span class="st">"Coefficient of Variation"</span>) <span class="op">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    custom_theme()</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>&lt;ggplot: (140569381687)&gt;</code></pre>
 </div>
 </div>
 <section id="xyz-classes" class="level4">
@@ -1230,203 +1193,203 @@ There are three categories in XYZ analysis which are:</p>
 <div class="cell" data-execution_count="23">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> xyz_classifer(cov): <span class="co"># change name</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Assign (XYZ) categories to each SKU based on their coefficient of </span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">    variation (CV) in order quantity.</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">    :param cov: Coefficient of variation in order quantity for SKU</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">    :return:  A pandas Series with three unique category.</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cov <span class="op">&lt;=</span> <span class="fl">0.5</span>:</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'X'</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> cov <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="kw">and</span> cov <span class="op">&lt;=</span> <span class="fl">1.0</span>:</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Y'</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Z'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_xyz_item(cov): </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Assign (XYZ) categories to each SKU based on their coefficient of </span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">    variation (CV) in order quantity.</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">    :param cov: Coefficient of variation in order quantity for SKU</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">    :return:  A pandas Series with three unique category.</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cov <span class="op">&lt;=</span> <span class="fl">0.5</span>:</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'X'</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> cov <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="kw">and</span> cov <span class="op">&lt;=</span> <span class="fl">1.0</span>:</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Y'</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Z'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> xyz_df.assign(xyz_class <span class="op">=</span> xyz_df[<span class="st">"cov_demand"</span>].<span class="bu">apply</span>(xyz_classifer))</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    xyz_df[<span class="st">"xyz_class"</span>]</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        .value_counts()</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        .rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Class"</span>, <span class="st">"xyz_class"</span>: <span class="st">"count"</span>})</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>xyz_df <span class="op">=</span> xyz_df.assign(xyz_class <span class="op">=</span> xyz_df[<span class="st">"cov_demand"</span>].<span class="bu">apply</span>(classify_xyz_item))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    xyz_df[<span class="st">"xyz_class"</span>]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        .value_counts()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        .rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Class"</span>, <span class="st">"xyz_class"</span>: <span class="st">"count"</span>})</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Class</th>
-      <th>count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Z</td>
-      <td>3429</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Y</td>
-      <td>1281</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>X</td>
-      <td>531</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Class</th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Z</td>
+<td>3429</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Y</td>
+<td>1281</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>X</td>
+<td>531</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Based on the number of product in each class, there are more products in the Z class than other classes, this is expected given the CV distribution earlier.</p>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    xyz_df</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"xyz_class"</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        .agg(total_product <span class="op">=</span> (<span class="st">"sku"</span>, <span class="st">"nunique"</span>),</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>             total_demand <span class="op">=</span> (<span class="st">"total_demand"</span>, <span class="st">"sum"</span>),</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>             std_of_demand <span class="op">=</span> (<span class="st">"std_demand"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>             average_demand <span class="op">=</span> (<span class="st">"avg_demand"</span>, <span class="st">"mean"</span>),</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>             average_cov <span class="op">=</span> (<span class="st">"cov_demand"</span>, <span class="st">"mean"</span>))</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    xyz_df</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"xyz_class"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        .agg(total_product <span class="op">=</span> (<span class="st">"sku"</span>, <span class="st">"nunique"</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>             total_demand <span class="op">=</span> (<span class="st">"total_demand"</span>, <span class="st">"sum"</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>             std_of_demand <span class="op">=</span> (<span class="st">"std_demand"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>             average_demand <span class="op">=</span> (<span class="st">"avg_demand"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>             average_cov <span class="op">=</span> (<span class="st">"cov_demand"</span>, <span class="st">"mean"</span>))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>xyz_class</th>
-      <th>total_product</th>
-      <th>total_demand</th>
-      <th>std_of_demand</th>
-      <th>average_demand</th>
-      <th>average_cov</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>X</td>
-      <td>531</td>
-      <td>99436.733</td>
-      <td>4.981240</td>
-      <td>15.605263</td>
-      <td>0.369697</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Y</td>
-      <td>1281</td>
-      <td>65623.300</td>
-      <td>3.037538</td>
-      <td>4.269015</td>
-      <td>0.736462</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Z</td>
-      <td>3429</td>
-      <td>30348.396</td>
-      <td>1.210885</td>
-      <td>0.737542</td>
-      <td>2.340750</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">xyz_class</th>
+<th data-quarto-table-cell-role="th">total_product</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+<th data-quarto-table-cell-role="th">std_of_demand</th>
+<th data-quarto-table-cell-role="th">average_demand</th>
+<th data-quarto-table-cell-role="th">average_cov</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>X</td>
+<td>531</td>
+<td>99436.733</td>
+<td>4.981240</td>
+<td>15.605263</td>
+<td>0.369697</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Y</td>
+<td>1281</td>
+<td>65623.300</td>
+<td>3.037538</td>
+<td>4.269015</td>
+<td>0.736462</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Z</td>
+<td>3429</td>
+<td>30348.396</td>
+<td>1.210885</td>
+<td>0.737542</td>
+<td>2.340750</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>month_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> xyz_df.columns <span class="cf">if</span> <span class="st">"M"</span> <span class="kw">in</span> c]</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> (</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    xyz_df</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"xyz_class"</span>)[month_cols]</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">sum</span>()</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        .unstack(level<span class="op">=</span><span class="st">"xyz_class"</span>)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>        .rename(columns<span class="op">=</span>{<span class="dv">0</span>: <span class="st">"total_demand"</span>, <span class="st">""</span>: <span class="st">"month"</span>})</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>        .assign(month<span class="op">=</span><span class="kw">lambda</span> d: d[<span class="st">"month"</span>].astype(<span class="st">"category"</span>).cat.reorder_categories(month_cols, ordered<span class="op">=</span><span class="va">True</span>))</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>temp.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>month_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> xyz_df.columns <span class="cf">if</span> <span class="st">"M"</span> <span class="kw">in</span> c]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> (</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    xyz_df</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"xyz_class"</span>)[month_cols]</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">sum</span>()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        .unstack(level<span class="op">=</span><span class="st">"xyz_class"</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        .rename(columns<span class="op">=</span>{<span class="dv">0</span>: <span class="st">"total_demand"</span>, <span class="st">""</span>: <span class="st">"month"</span>})</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>        .assign(month<span class="op">=</span><span class="kw">lambda</span> d: d[<span class="st">"month"</span>].astype(<span class="st">"category"</span>).cat.reorder_categories(month_cols, ordered<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>temp.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>month</th>
-      <th>xyz_class</th>
-      <th>total_demand</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>M1</td>
-      <td>X</td>
-      <td>7955.50</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>M1</td>
-      <td>Y</td>
-      <td>4737.00</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>M1</td>
-      <td>Z</td>
-      <td>2181.87</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>M2</td>
-      <td>X</td>
-      <td>7851.49</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>M2</td>
-      <td>Y</td>
-      <td>4794.34</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">xyz_class</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>M1</td>
+<td>X</td>
+<td>7955.50</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>M1</td>
+<td>Y</td>
+<td>4737.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>M1</td>
+<td>Z</td>
+<td>2181.87</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>M2</td>
+<td>X</td>
+<td>7851.49</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>M2</td>
+<td>Y</td>
+<td>4794.34</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>temp, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"month"</span>, y<span class="op">=</span><span class="st">"total_demand"</span>, group<span class="op">=</span><span class="dv">1</span>)) <span class="op">+</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels<span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    g.facet_wrap(facets<span class="op">=</span><span class="st">"xyz_class"</span>, nrow<span class="op">=</span><span class="dv">3</span>, scales<span class="op">=</span><span class="st">"free_y"</span>) <span class="op">+</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="va">None</span>, y<span class="op">=</span><span class="st">"Demand"</span>, title<span class="op">=</span><span class="st">"(XYZ) Class by Total Quantity Order in each Month"</span>) <span class="op">+</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    custom_theme(figure_size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    g.ggplot(data<span class="op">=</span>temp, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"month"</span>, y<span class="op">=</span><span class="st">"total_demand"</span>, group<span class="op">=</span><span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    g.geom_line() <span class="op">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    g.scale_y_continuous(labels<span class="op">=</span> <span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    g.facet_wrap(facets<span class="op">=</span><span class="st">"xyz_class"</span>, nrow<span class="op">=</span><span class="dv">3</span>, scales<span class="op">=</span><span class="st">"free_y"</span>) <span class="op">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    g.labs(x<span class="op">=</span><span class="va">None</span>, y<span class="op">=</span><span class="st">"Demand"</span>, title<span class="op">=</span><span class="st">"(XYZ) Class by Total Quantity Order in each Month"</span>) <span class="op">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    custom_theme(figure_size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="27">
-<pre><code>&lt;ggplot: (140569489601)&gt;</code></pre>
 </div>
 </div>
 <p>Examining each category represented on the graph, class X have the least amount of flutuations compared to class Y and class Z, class Z represent a clear case of high volatility on quantity demand across all months.</p>
@@ -1438,89 +1401,90 @@ There are three categories in XYZ analysis which are:</p>
 <section id="merge-abc-and-xyz-class-tables" class="level6">
 <h6 class="anchored" data-anchor-id="merge-abc-and-xyz-class-tables">Merge ABC and XYZ class tables</h6>
 <div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>abc_xyz <span class="op">=</span> abc_df[[<span class="st">"sku"</span>, <span class="st">"total_revenue"</span>, <span class="st">"abc_class"</span>]].merge(</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    xyz_df[[<span class="st">"sku"</span>, <span class="st">"std_demand"</span>, <span class="st">"total_demand"</span>, <span class="st">"avg_demand"</span>, <span class="st">"cov_demand"</span>, <span class="st">"xyz_class"</span>]],</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"sku"</span>,</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>abc_xyz.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>abc_xyz <span class="op">=</span> abc_df[[<span class="st">"sku"</span>, <span class="st">"total_revenue"</span>, <span class="st">"abc_class"</span>]].merge(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    xyz_df[[<span class="st">"sku"</span>, <span class="st">"std_demand"</span>, <span class="st">"total_demand"</span>, <span class="st">"avg_demand"</span>, <span class="st">"cov_demand"</span>, <span class="st">"xyz_class"</span>]],</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"sku"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"left"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>abc_xyz.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>sku</th>
-      <th>total_revenue</th>
-      <th>abc_class</th>
-      <th>std_demand</th>
-      <th>total_demand</th>
-      <th>avg_demand</th>
-      <th>cov_demand</th>
-      <th>xyz_class</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>3YDVF</td>
-      <td>29419.35</td>
-      <td>A</td>
-      <td>7.529739</td>
-      <td>926.0</td>
-      <td>77.166667</td>
-      <td>0.097578</td>
-      <td>X</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>LJ26I</td>
-      <td>13571.45</td>
-      <td>A</td>
-      <td>13.773052</td>
-      <td>632.0</td>
-      <td>52.666667</td>
-      <td>0.261514</td>
-      <td>X</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>IRQZ4</td>
-      <td>11681.63</td>
-      <td>A</td>
-      <td>10.703653</td>
-      <td>321.0</td>
-      <td>26.750000</td>
-      <td>0.400137</td>
-      <td>X</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DWJC4</td>
-      <td>10592.09</td>
-      <td>A</td>
-      <td>8.273268</td>
-      <td>823.0</td>
-      <td>68.583333</td>
-      <td>0.120631</td>
-      <td>X</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>44RUE</td>
-      <td>8942.63</td>
-      <td>A</td>
-      <td>15.602059</td>
-      <td>218.0</td>
-      <td>18.166667</td>
-      <td>0.858829</td>
-      <td>Y</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sku</th>
+<th data-quarto-table-cell-role="th">total_revenue</th>
+<th data-quarto-table-cell-role="th">abc_class</th>
+<th data-quarto-table-cell-role="th">std_demand</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+<th data-quarto-table-cell-role="th">avg_demand</th>
+<th data-quarto-table-cell-role="th">cov_demand</th>
+<th data-quarto-table-cell-role="th">xyz_class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>3YDVF</td>
+<td>29419.35</td>
+<td>A</td>
+<td>7.529739</td>
+<td>926.0</td>
+<td>77.166667</td>
+<td>0.097578</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>LJ26I</td>
+<td>13571.45</td>
+<td>A</td>
+<td>13.773052</td>
+<td>632.0</td>
+<td>52.666667</td>
+<td>0.261514</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>IRQZ4</td>
+<td>11681.63</td>
+<td>A</td>
+<td>10.703653</td>
+<td>321.0</td>
+<td>26.750000</td>
+<td>0.400137</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DWJC4</td>
+<td>10592.09</td>
+<td>A</td>
+<td>8.273268</td>
+<td>823.0</td>
+<td>68.583333</td>
+<td>0.120631</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>44RUE</td>
+<td>8942.63</td>
+<td>A</td>
+<td>15.602059</td>
+<td>218.0</td>
+<td>18.166667</td>
+<td>0.858829</td>
+<td>Y</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1528,91 +1492,92 @@ There are three categories in XYZ analysis which are:</p>
 <section id="combining-abc-xyz-classes" class="level5">
 <h5 class="anchored" data-anchor-id="combining-abc-xyz-classes">Combining ABC &amp; XYZ classes</h5>
 <div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>abc_xyz <span class="op">=</span> abc_xyz.assign(abc_xyz_class <span class="op">=</span> abc_xyz[<span class="st">"abc_class"</span>].astype(<span class="bu">str</span>) <span class="op">+</span> abc_xyz[<span class="st">"xyz_class"</span>].astype(<span class="bu">str</span>))</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>abc_xyz.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>abc_xyz <span class="op">=</span> abc_xyz.assign(abc_xyz_class <span class="op">=</span> abc_xyz[<span class="st">"abc_class"</span>].astype(<span class="bu">str</span>) <span class="op">+</span> abc_xyz[<span class="st">"xyz_class"</span>].astype(<span class="bu">str</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>abc_xyz.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>sku</th>
-      <th>total_revenue</th>
-      <th>abc_class</th>
-      <th>std_demand</th>
-      <th>total_demand</th>
-      <th>avg_demand</th>
-      <th>cov_demand</th>
-      <th>xyz_class</th>
-      <th>abc_xyz_class</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>3YDVF</td>
-      <td>29419.35</td>
-      <td>A</td>
-      <td>7.529739</td>
-      <td>926.0</td>
-      <td>77.166667</td>
-      <td>0.097578</td>
-      <td>X</td>
-      <td>AX</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>LJ26I</td>
-      <td>13571.45</td>
-      <td>A</td>
-      <td>13.773052</td>
-      <td>632.0</td>
-      <td>52.666667</td>
-      <td>0.261514</td>
-      <td>X</td>
-      <td>AX</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>IRQZ4</td>
-      <td>11681.63</td>
-      <td>A</td>
-      <td>10.703653</td>
-      <td>321.0</td>
-      <td>26.750000</td>
-      <td>0.400137</td>
-      <td>X</td>
-      <td>AX</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>DWJC4</td>
-      <td>10592.09</td>
-      <td>A</td>
-      <td>8.273268</td>
-      <td>823.0</td>
-      <td>68.583333</td>
-      <td>0.120631</td>
-      <td>X</td>
-      <td>AX</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>44RUE</td>
-      <td>8942.63</td>
-      <td>A</td>
-      <td>15.602059</td>
-      <td>218.0</td>
-      <td>18.166667</td>
-      <td>0.858829</td>
-      <td>Y</td>
-      <td>AY</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sku</th>
+<th data-quarto-table-cell-role="th">total_revenue</th>
+<th data-quarto-table-cell-role="th">abc_class</th>
+<th data-quarto-table-cell-role="th">std_demand</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+<th data-quarto-table-cell-role="th">avg_demand</th>
+<th data-quarto-table-cell-role="th">cov_demand</th>
+<th data-quarto-table-cell-role="th">xyz_class</th>
+<th data-quarto-table-cell-role="th">abc_xyz_class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>3YDVF</td>
+<td>29419.35</td>
+<td>A</td>
+<td>7.529739</td>
+<td>926.0</td>
+<td>77.166667</td>
+<td>0.097578</td>
+<td>X</td>
+<td>AX</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>LJ26I</td>
+<td>13571.45</td>
+<td>A</td>
+<td>13.773052</td>
+<td>632.0</td>
+<td>52.666667</td>
+<td>0.261514</td>
+<td>X</td>
+<td>AX</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>IRQZ4</td>
+<td>11681.63</td>
+<td>A</td>
+<td>10.703653</td>
+<td>321.0</td>
+<td>26.750000</td>
+<td>0.400137</td>
+<td>X</td>
+<td>AX</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>DWJC4</td>
+<td>10592.09</td>
+<td>A</td>
+<td>8.273268</td>
+<td>823.0</td>
+<td>68.583333</td>
+<td>0.120631</td>
+<td>X</td>
+<td>AX</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>44RUE</td>
+<td>8942.63</td>
+<td>A</td>
+<td>15.602059</td>
+<td>218.0</td>
+<td>18.166667</td>
+<td>0.858829</td>
+<td>Y</td>
+<td>AY</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1627,156 +1592,148 @@ There are three categories in XYZ analysis which are:</p>
 <p><code>CY</code> : This category includes items with less stable demand and also low revenue.</p>
 <p><code>CZ</code> : The items here are difficult to forecast because demand may be periodic and they also generate a very small amount of revenue.</p>
 <div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> (</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    abc_xyz</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"abc_xyz_class"</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        .agg(total_sku<span class="op">=</span>(<span class="st">'sku'</span>, <span class="st">'nunique'</span>),</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>             total_demand <span class="op">=</span> (<span class="st">'total_demand'</span>, <span class="st">"sum"</span>),</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>             avg_demand <span class="op">=</span> (<span class="st">'avg_demand'</span>, <span class="st">'mean'</span>),    </span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>             total_revenue <span class="op">=</span> (<span class="st">'total_revenue'</span>, <span class="st">"sum"</span>))</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> (</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    abc_xyz</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        .groupby(<span class="st">"abc_xyz_class"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        .agg(total_sku<span class="op">=</span>(<span class="st">'sku'</span>, <span class="st">'nunique'</span>),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>             total_demand <span class="op">=</span> (<span class="st">'total_demand'</span>, <span class="st">"sum"</span>),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>             avg_demand <span class="op">=</span> (<span class="st">'avg_demand'</span>, <span class="st">'mean'</span>),    </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>             total_revenue <span class="op">=</span> (<span class="st">'total_revenue'</span>, <span class="st">"sum"</span>))</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>abc_xyz_class</th>
-      <th>total_sku</th>
-      <th>total_demand</th>
-      <th>avg_demand</th>
-      <th>total_revenue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>AX</td>
-      <td>412</td>
-      <td>86198.533</td>
-      <td>17.434978</td>
-      <td>622917.97</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>AY</td>
-      <td>519</td>
-      <td>38869.630</td>
-      <td>6.241110</td>
-      <td>512348.97</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>AZ</td>
-      <td>204</td>
-      <td>5086.510</td>
-      <td>2.077823</td>
-      <td>125490.43</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>BX</td>
-      <td>104</td>
-      <td>12588.200</td>
-      <td>10.086699</td>
-      <td>21662.63</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>BY</td>
-      <td>575</td>
-      <td>22001.670</td>
-      <td>3.188648</td>
-      <td>103916.87</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>BZ</td>
-      <td>731</td>
-      <td>11243.900</td>
-      <td>1.281794</td>
-      <td>111158.97</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>CX</td>
-      <td>15</td>
-      <td>650.000</td>
-      <td>3.611111</td>
-      <td>896.88</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>CY</td>
-      <td>187</td>
-      <td>4752.000</td>
-      <td>2.117647</td>
-      <td>9454.98</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>CZ</td>
-      <td>2494</td>
-      <td>14017.986</td>
-      <td>0.468390</td>
-      <td>68477.72</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">abc_xyz_class</th>
+<th data-quarto-table-cell-role="th">total_sku</th>
+<th data-quarto-table-cell-role="th">total_demand</th>
+<th data-quarto-table-cell-role="th">avg_demand</th>
+<th data-quarto-table-cell-role="th">total_revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>AX</td>
+<td>412</td>
+<td>86198.533</td>
+<td>17.434978</td>
+<td>622917.97</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>AY</td>
+<td>519</td>
+<td>38869.630</td>
+<td>6.241110</td>
+<td>512348.97</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>AZ</td>
+<td>204</td>
+<td>5086.510</td>
+<td>2.077823</td>
+<td>125490.43</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>BX</td>
+<td>104</td>
+<td>12588.200</td>
+<td>10.086699</td>
+<td>21662.63</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>BY</td>
+<td>575</td>
+<td>22001.670</td>
+<td>3.188648</td>
+<td>103916.87</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>BZ</td>
+<td>731</td>
+<td>11243.900</td>
+<td>1.281794</td>
+<td>111158.97</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>CX</td>
+<td>15</td>
+<td>650.000</td>
+<td>3.611111</td>
+<td>896.88</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>CY</td>
+<td>187</td>
+<td>4752.000</td>
+<td>2.117647</td>
+<td>9454.98</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>CZ</td>
+<td>2494</td>
+<td>14017.986</td>
+<td>0.468390</td>
+<td>68477.72</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="31">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> abc_xyz_plot(var: <span class="bu">str</span>, y_title: <span class="bu">str</span>, title: <span class="bu">str</span>):</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>        g.ggplot(data<span class="op">=</span>temp, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"abc_xyz_class"</span>, y<span class="op">=</span>var)) <span class="op">+</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>        g.geom_col() <span class="op">+</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        g.labs(x<span class="op">=</span><span class="st">"Class"</span>, y<span class="op">=</span>y_title, title<span class="op">=</span>title) <span class="op">+</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        g.scale_y_continuous(labels<span class="op">=</span><span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        custom_theme()</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> abc_xyz_plot(var: <span class="bu">str</span>, y_title: <span class="bu">str</span>, title: <span class="bu">str</span>):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        g.ggplot(data<span class="op">=</span>temp, mapping<span class="op">=</span>g.aes(x<span class="op">=</span><span class="st">"abc_xyz_class"</span>, y<span class="op">=</span>var)) <span class="op">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        g.geom_col() <span class="op">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        g.labs(x<span class="op">=</span><span class="st">"Class"</span>, y<span class="op">=</span>y_title, title<span class="op">=</span>title) <span class="op">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        g.scale_y_continuous(labels<span class="op">=</span><span class="kw">lambda</span> l: [<span class="st">"{:,.0f}"</span>.<span class="bu">format</span>(v) <span class="cf">for</span> v <span class="kw">in</span> l]) <span class="op">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        custom_theme()</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_sku"</span>, </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"No. Products"</span>, </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"Number of Products by (ABC-XYZ) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_sku"</span>, </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"No. Products"</span>, </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"Number of Products by (ABC-XYZ) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="32">
-<pre><code>&lt;ggplot: (140569427107)&gt;</code></pre>
 </div>
 </div>
 <p><code>47.6% of all products fall under the CZ class</code>, with this insight inventory managers need to develope a responsive or adaptive supply chain for these products that can instantly adjust to changes in demand, where inventory is oredered and received only when it is needed, which reduces carrying cost.</p>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_demand"</span>, </span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"Demand"</span>, </span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"Total Quantity Demand by (ABC-XYZ) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_demand"</span>, </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"Demand"</span>, </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"Total Quantity Demand by (ABC-XYZ) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<pre><code>&lt;ggplot: (140570206932)&gt;</code></pre>
 </div>
 </div>
 <p>For quantity demand, <code>class AX holds the majority with 44% of all demand</code>. Since only 7.86% of all product falls under the AX class, inventory managers can bring in more products from other class by reviewing price strategy, imporving marketing and promotion and also consider bundling or cross-selling with other high performing products such as products in class AX and AY.</p>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_revenue"</span>, </span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"Revenue"</span>, </span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"Total Revenue by (ABC-XYZ) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>abc_xyz_plot(var<span class="op">=</span><span class="st">"total_revenue"</span>, </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>             y_title<span class="op">=</span><span class="st">"Revenue"</span>, </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>             title<span class="op">=</span><span class="st">"Total Revenue by (ABC-XYZ) Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="index_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>&lt;ggplot: (140570189963)&gt;</code></pre>
 </div>
 </div>
 <p>Class AX and AY both contains majority of products that generate the highest revenue, a combined 72% of revenue. Inventory managers should consider conducting market research on products generating less revenue to identify trends and customer preferences. This can help them identify new opputunities and adjust product features and marketing accordingly.</p>
@@ -1919,7 +1876,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1927,9 +1886,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1941,7 +1914,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1977,24 +1967,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
