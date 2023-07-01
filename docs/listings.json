@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/reorder-point/index.html",
       "/posts/Delivery-analysis/index.html",
       "/posts/abc-xyz-analysis/index.html"
     ]
