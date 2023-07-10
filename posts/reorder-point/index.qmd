@@ -46,18 +46,20 @@ stock.head()
 
 To facilitate data utilization, we will conduct a brief data cleaning process.
 ```{python}
+# (1) 
+past_orders.columns = ["date", "sku", "order_quantity"]                         
 
-past_orders.columns = ["date", "sku", "order_quantity"]                # <1>          
+# (2)
+past_orders["date"] = pd.to_datetime(past_orders["date"])              
 
-past_orders["date"] = pd.to_datetime(past_orders["date"])              # <2>
+# (3)
+past_orders = past_orders.sort_values(by="date", ascending=True)       
 
-past_orders = past_orders.sort_values(by="date", ascending=True)       # <3>
-
-
-stock.columns = [                                                      # <4>
-    "sku", "current_stock_qty", "unit_nos_kg", "avg_lead_time_days",   # <4>
-    "max_lead_time_days", "unit_price"                                 # <4>
-]                                                                      # <4>
+# (4)
+stock.columns = [                                                     
+    "sku", "current_stock_qty", "unit_nos_kg", "avg_lead_time_days",  
+    "max_lead_time_days", "unit_price"                                
+]                                                                     
 ```
 1. Update the column names of the past order dataset.
 2. Convert the data column from an object data type to the date format.
@@ -80,11 +82,10 @@ There are a total of 290 unique SKUs. By "SKU", which stands for "Stock Keeping 
 
 ## Extrating important dates periods
 ```{python}
-#| code-annotations: below
 
 past_orders = past_orders.assign(
-    week = past_orders["date"].dt.isocalendar().week,  # <1>
-    year = past_orders["date"].dt.year                 # <2>
+    week = past_orders["date"].dt.isocalendar().week,  # (1)
+    year = past_orders["date"].dt.year                 # (2)
 )
 
 ```
@@ -98,11 +99,10 @@ past_orders = past_orders.assign(
 We will examine the average and cummulative values of the weekly demand for all SKUs. This exploration will provide insights into both the typical demand level and the overall magnitude of the weekly demand throughout the year 2019.
 
 ```{python}
-#| code-annotations: below
 
 all_sku_summary = (
     past_orders
-        .groupby(["year", "week"])                          # <1>
+        .groupby(["year", "week"])                         # (1)
         .agg(
             avg_demand   = ("order_quantity", "mean"),
             total_demand = ("order_quantity", "sum")
@@ -230,19 +230,16 @@ In terms of the maximum lead time distribution, the majority (75%) of SKUs had l
 ## Average & Maximum demand for each SKU
 
 ```{python}
-#| code-annotations: below
 
 demand = (
     past_orders
         .groupby(["year", "week", "sku"])
-        .agg(
-            total_demand = ("order_quantity", "sum")                   # <1>
-        )
+        .agg(total_demand = ("order_quantity", "sum")) # (1)
         .reset_index()
         .groupby(["sku"])
         .agg(
-            avg_demand = ("total_demand", "mean"),                     # <2>
-            max_demand = ("total_demand", "max")                       # <3>
+            avg_demand = ("total_demand", "mean"),     # (2)
+            max_demand = ("total_demand", "max")       # (3)
         )
         .reset_index()
 )
@@ -355,12 +352,12 @@ The formula for calculating safety stock using the maximum and average weekly de
 
 inventory = (
     demand
-        .merge(stock, how="left", on="sku")                                                        # <1>
+        .merge(stock, how="left", on="sku")                                                # (1)
         .assign(
-            avg_lead_time_weeks = lambda _: _["avg_lead_time_days"] / 7,                           # <2>
-            max_lead_time_weeks = lambda _: _["max_lead_time_days"] / 7,                           # <3>
-            max_stock_depletion = lambda _: _["max_demand"] * _["max_lead_time_weeks"],            # <4>
-            avg_safety_stock = lambda _: _["avg_demand"] * _["avg_lead_time_weeks"],               # <5>
+            avg_lead_time_weeks = lambda _: _["avg_lead_time_days"] / 7,                   # (2)
+            max_lead_time_weeks = lambda _: _["max_lead_time_days"] / 7,                   # (3)
+            max_stock_depletion = lambda _: _["max_demand"] * _["max_lead_time_weeks"],    # (4)
+            avg_safety_stock = lambda _: _["avg_demand"] * _["avg_lead_time_weeks"],       # (5)
             safety_stock  = lambda _: _["max_stock_depletion"] - _["avg_safety_stock"]   
         )
 )
@@ -455,13 +452,11 @@ The formula for calculating reorder point  is as follows:
 inventory = (
     inventory
         .assign(
-            qty_unit_sold   = (                                                              # <1>
-                inventory["avg_demand"] * inventory["avg_lead_time_weeks"]                   # <1>
-            ),                                                                               # <1>
-            reorder_point   = lambda _: _["safety_stock"] + _["qty_unit_sold"],              # <2>
-            need_to_reorder = lambda _: np.where(                                            # <3>
-                _["reorder_point"] > _["current_stock_qty"], "Yes", "No"                     # <3>
-            )                                                                                # <3>
+            qty_unit_sold = (inventory["avg_demand"] * inventory["avg_lead_time_weeks"]), # (1)
+            reorder_point   = lambda _: _["safety_stock"] + _["qty_unit_sold"],           # (2)
+            need_to_reorder = lambda _: np.where(                                         # (3)
+                _["reorder_point"] > _["current_stock_qty"], "Yes", "No" 
+            )
         )
 )
 
@@ -521,7 +516,7 @@ need_reorder = (
         size=15, 
         va="bottom",
         color="#E066FF",
-        format_string="{}%"
+        format_string="({}%)"
     ) +
     g.labs(x="Reorder?", y=None, title="Number of SKUs in each Category") +
     g.theme_minimal() +
@@ -548,10 +543,10 @@ To ensure precise categorization of each SKU, it is necessary to extract the cur
 inventory = (
     inventory.
         assign(
-            stock_status = lambda _: np.where(                                        # <1>                       
-                _["current_stock_qty"] == 0, "Out of Stock", np.where(                # <2>
-                    _["need_to_reorder"] == "Yes", "Below Reorder Point", "In Stock"  # <2>
-                )                                                                     # <2>
+            stock_status = lambda _: np.where(                                        # (1)                       
+                _["current_stock_qty"] == 0, "Out of Stock", np.where(                # (2)
+                    _["need_to_reorder"] == "Yes", "Below Reorder Point", "In Stock"  
+                )                                                                     
             )
         )
 )
@@ -606,10 +601,10 @@ stock_status = (
         g.aes(label = "percentage", y=7), 
         position=g.position_dodge(width=.9), 
         nudge_x=0.25, 
-        size=15, 
+        size=14, 
         va="bottom",
         color="#E066FF",
-        format_string="{}%"
+        format_string="({}%)"
     ) +
     g.labs(x=None, y=None, title = "Number of SKUs by Stock Status") +
     g.theme_minimal() +
