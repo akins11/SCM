@@ -1,0 +1,771 @@
+---
+title: "Demystifying Database Normalization: Moving Single CSV Files into a Structured Database"
+author: "Ayomide Akinwande"
+date: "2023-07-20"
+categories: [code, SQL]
+jupyter: python3
+---
+
+In today's data-driven world, businesses often find themselves grappling with large amount of data in order to derive meaningful insights. As this data volume increases, the performance of their existing small-scale data storage solutions, such as storing data in a single CSV file, starts to deteriorate. Consequently, businesses face the risk of not keeping up with the latest market trends and customer purchase patterns. To address this challenge, migrating the data into a database management system, either on-site or in the cloud, provides an excellent solution. In this article, we will explore the process of migrating a single CSV file that contains records tracking customer orders. Additionally, we will delve into the concept of database normalization and outline the steps involved in moving the data.
+
+![ERD](ERD.png)
+
+### Understanding database normalization.
+Before delving into the details of data migration and normalization of our database, it is crucial to understand the meaning of normalization. So what is database normalization, Database normalization is process of organizing and structuring data to minimize redundancy, improve data integrity, and optimize database performance. Simply put, it involves breaking down a database into multiple related tables, each serving a specific purpose.
+
+There are several important reasons for optimizing a database, Such as to:
+
+1. Improved data integrity by reducing redundancy and inconsistency.
+2. Efficiently utilize storage by eliminating data duplications.
+3. Enhance performance and ensure quick response times.
+4. Facilitate flexibility and scalability for future modifications and expansions.
+5. Achieve complience and security by implementing a normalized structure that simplifies access control.
+
+While i won't delve too deeply into these concepts to stay focused on the task at hand, it is crucial to have a good understanding of these principles for effective database management.
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+import psycopg2
+import pandas as pd
+from pandas import DataFrame
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+conn = psycopg2.connect(
+    host="localhost",
+    database="order_flow",
+    user="postgres",
+    password="**********"            # Password
+)
+
+cur = conn.cursor()
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+def to_pandas_df(results: list, cur_discription: tuple) -> DataFrame:
+    """ 
+    :params
+       result: ...
+       cur_discription: ...
+
+    :return
+        A pandas dataFrame.
+    """
+    columns = [desc[0] for desc in cur_discription]
+
+    return DataFrame(results, columns=columns)
+
+```
+
+### Creating the Database
+Before migrating your data from a single csv file into a database, it is important to plan the database structure and consider how you will handle data redundancy to ensure data consistency and integrity. Additionaly, there are other important principles to look out for, such as establishing proper relationships between the tables, defining primary and foreign keys, and implementing approprate data validation rules.
+
+We will be using the postgreSQL relational database for the migration process and data storage. However, the process will be similar for other relational database. To begin,  we will create a database called `order_flow` where we will be working on as we progress through this article.
+
+```{python}
+#| eval: false
+
+CREATE DATABASE order_flow;
+```
+
+The above query will create a database and establish a new session after you run it. Now that we have a functional database, the next step is to create an initial table that will serve as the container for the data currently residing in the CSV file.
+
+```{python}
+#| eval: false
+
+CREATE TABLE denormalized_table (
+	table_id SERIAL	PRIMARY KEY,
+	product_name VARCHAR(12),
+	supplier_name VARCHAR(35),
+	customer_id INTEGER,
+	order_date TIMESTAMP,
+	ship_date TIMESTAMP,
+	quantity SMALLINT,
+	price DECIMAL(6, 3),
+	customer_first_name VARCHAR(20),
+	customer_last_name VARCHAR(20)
+);
+```
+
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    CREATE TABLE denormalized_table (
+        table_id SERIAL	PRIMARY KEY,
+        product_name VARCHAR(12),
+        supplier_name VARCHAR(35),
+        customer_id INTEGER,
+        order_date TIMESTAMP,
+        ship_date TIMESTAMP,
+        quantity SMALLINT,
+        price DECIMAL(6, 3),
+        customer_first_name VARCHAR(20),
+        customer_last_name VARCHAR(20)
+    );
+    """
+)
+
+conn.commit()
+```
+
+After running the above query, you are likely to see a message that says `Query returned successfully` This message simply indicates that our table has been created successfully. To further confirm the table's present status, you can run the query below, which will return the column names and an empty row. The empty row is expected since we haven't inserted any records yet.
+
+```{python}
+#| eval: false
+
+SELECT * FROM denormalized_table;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    "SELECT * FROM denormalized_table;"
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+Now it's time to import the data from the CSV file. We will use the `COPY` command in PostgreSQL, which allows for importing CSV files. Additionally, we will inclued the  `CSV HEADER`  option at the end of the query, without the `CSV HEADER` option,  PostgreSQL would treat the first row of the CSV file as data and attempt to insert it into the table, leading to incorrect data placement and potential data integrity issues. Therefore it is good practice to include the option when importing CSV files.
+
+```{python}
+#| eval: False
+
+COPY denormalized_table (
+	table_id,
+	product_name,
+	supplier_name,
+	customer_id,
+	order_date,
+	ship_date,
+	quantity,
+	price,
+	customer_first_name,
+	customer_last_name
+)
+FROM 'data/orders.csv'
+DELIMITER ','
+CSV HEADER;
+```
+
+
+```{python}
+#| eval: False
+
+SELECT * FROM denormalized_table LIMIT 5;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+	COPY denormalized_table (
+		table_id,
+		product_name,
+		supplier_name,
+		customer_id,
+		order_date,
+		ship_date,
+		quantity,
+		price,
+		customer_first_name,
+		customer_last_name
+	)
+	FROM  'C:/Users/AYOMIDE/Documents/PostgresSQL/Normalization-db/orders.csv'
+	DELIMITER ','
+	CSV HEADER;
+	"""
+)
+
+conn.commit()
+
+cur.execute(
+    "SELECT * FROM denormalized_table LIMIT 5;"
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+The duration of the data import process may vary depending on the size of your data. Once the data import is complete, you will receive a message similar to the previous one indicating that the query has returned successfully. If you encounter any issues while importing the data, it is advisable to verify whether the column data types in your table match the data type definitions in the CSV file. Addtionally, ensure that the column positions in both instances are aligned correctly.
+
+We have completed the first part of the process by successfully migrating our data into PostgreSQL. In the next part we will begin creating the specific entities.
+
+<br>
+<br>
+
+### Database Normalization
+When separating your data into separate tables, it is crucial to understand the concept of normal forms (1NF, 2NF, 3NF, etc.), as these guidelines will assist you in creating an optimized database. Here's a brief summary of the first three normal forms:
+
+> `First Normal Form (1NF):` Eliminate data redundancy and ensures atomic values by organizing data into separate columns within a table.
+
+> `Second Normal Form (2NF):` Builds upon the 1NF and addresses partial depencencies by ensuring that non-key attributes are fully dependent on the entire primary key.
+
+> `Third Normal Form (3NF):` Further refines the normalization process by eliminating transitive dependencies, ensuring that non-key attributes are not dependent on other non-key attributes.
+
+By adhering to the principles of normalization and applying the approprate normal forms, you can effectively structure your database.
+
+Now, we will start by creating a `Product Table` that will solely contain infomation about the product and specific attributes related to each listed product.
+
+
+```{python}
+#| eval: False
+
+CREATE TABLE product (
+	prod_id SERIAL PRIMARY KEY,
+	prod_name VARCHAR(12) NOT NULL
+);
+
+SELECT * FROM product;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+	CREATE TABLE product (
+		prod_id SERIAL PRIMARY KEY,
+		prod_name VARCHAR(12) NOT NULL
+	);
+	"""
+)
+
+conn.commit()
+
+
+cur.execute(
+    "SELECT * FROM product;"
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+Just like the product table, we will create a `Supplier Table` that will store information about the suppliers. This table will allow us capture specific attributes related to each supplier.
+
+
+```{python}
+#| eval: False
+
+CREATE TABLE supplier(
+    sup_id SERIAL PRIMARY KEY,
+    sup_name VARCHAR(35) NOT NULL
+);
+
+SELECT * FROM product;
+```
+
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+	CREATE TABLE supplier(
+		sup_id SERIAL PRIMARY KEY,
+		sup_name VARCHAR(35) NOT NULL
+	);
+	"""
+)
+
+conn.commit()
+
+
+cur.execute(
+    "SELECT * FROM supplier;"
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+
+<br>
+
+The `Customer Table` will store important attributes such as unique customer IDs, first names and last names. These attributes will allow us to uniquely identify and manage customer infomation within the database.
+
+```{python}
+#| eval: false
+
+CREATE TABLE customer (
+    cus_id INTEGER PRIMARY KEY,
+    cus_first_name VARCHAR(20),
+    cus_last_name VARCHAR(20)
+);
+
+SELECT * FROM customer;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+	CREATE TABLE customer (
+		cus_id INTEGER PRIMARY KEY,
+		cus_first_name VARCHAR(20),
+		cus_last_name VARCHAR(20)
+	);
+	"""
+)
+
+conn.commit()
+
+
+cur.execute(
+    "SELECT * FROM customer;"
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+Finally, we have the `Order Table`, which will serve as our fact table. This table will include fields such as order ID, product ID, suppler ID, customer ID, order date, ship date, quantity ordered and unit price.
+
+```{python}
+#| eval: false
+
+CREATE TABLE orders(
+    ord_id SERIAL PRIMARY KEY,
+    ord_product_id SERIAL,
+    ord_supplier_id SERIAL,
+    ord_customer_id INTEGER,
+    ord_order_date TIMESTAMP,
+    ord_ship_date TIMESTAMP,
+    ord_quantity SMALLINT,
+    ord_price DECIMAL(6, 3),
+    CONSTRAINT fk_ord_product FOREIGN KEY(ord_product_id) REFERENCES product(prod_id),
+    CONSTRAINT fk_ord_supplier FOREIGN KEY(ord_supplier_id) REFERENCES supplier(sup_id),
+    CONSTRAINT fk_ord_customer FOREIGN KEY(ord_customer_id) REFERENCES customer(cus_id)
+);
+
+SELECT * FROM orders;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+	CREATE TABLE orders(
+		ord_id SERIAL PRIMARY KEY,
+		ord_product_id SERIAL,
+		ord_supplier_id SERIAL,
+		ord_customer_id INTEGER,
+		ord_order_date TIMESTAMP,
+		ord_ship_date TIMESTAMP,
+		ord_quantity SMALLINT,
+		ord_price DECIMAL(6, 3),
+		CONSTRAINT fk_ord_product FOREIGN KEY(ord_product_id) REFERENCES product(prod_id),
+		CONSTRAINT fk_ord_supplier FOREIGN KEY(ord_supplier_id) REFERENCES supplier(sup_id),
+		CONSTRAINT fk_ord_customer FOREIGN KEY(ord_customer_id) REFERENCES customer(cus_id)
+	);
+	"""
+)
+
+conn.commit()
+
+
+cur.execute(
+    "SELECT * FROM orders;"
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+Since the order table serves as our fact table, it will establish foreign keys to the tables mentioned earlier. These foreign keys establish the relationship between the order table and the product, supplier, and customer tables. By linking the fact table with the ralated dimension table through foreign keys, we can perform comprehensive analyses and generate meaningful insights by combining data from different tables.
+
+<br>
+<br>
+
+### Adding data to the various database tables
+After successfully creating the various tables, the next step is to migrate the centralized data into their respective tables.
+
+For the `Product Table`, the process is straightforward. From the *denormalized_table*, we only need the unique product name. PostgreSQL will automatically generate and populate the product ID, which serves as the primary key for the product table.
+
+```{python}
+#| eval: false
+
+INSERT INTO product(prod_name)
+SELECT DISTINCT product_name
+FROM denormalized_table
+ORDER BY 1;
+
+SELECT * FROM product;
+```
+
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    INSERT INTO product(prod_name)
+    SELECT DISTINCT product_name
+    FROM denormalized_table
+    ORDER BY 1;
+    """
+)
+
+conn.commit()
+
+
+cur.execute(
+    "SELECT * FROM product;"
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+We will follow a similar process for the `Supplier Table`. From the denormalized_table, we will transfer the unique supplier name to the supplier table while the supplier ID will be automatically generated and populated.
+
+```{python}
+#| eval: false
+
+INSERT INTO supplier(sup_name)
+SELECT DISTINCT supplier_name
+FROM denormalized_table
+ORDER BY 1;
+
+SELECT * FROM supplier;
+```
+
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    INSERT INTO supplier(sup_name)
+    SELECT DISTINCT supplier_name
+    FROM denormalized_table
+    ORDER BY 1;
+    """
+)
+
+conn.commit()
+
+
+cur.execute("SELECT * FROM supplier;")
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+
+<br>
+
+For the `Customer Table`, we will transfer both the customer's first name and last name from the *denormalized_table* into the respective columns of the customer table. Additionally, the unique customer ID will also be migrated into the customer table preserving the primary key association.
+
+```{python}
+#| eval: false
+
+INSERT INTO customer(
+    cus_id,
+    cus_first_name,
+    cus_last_name
+)
+SELECT DISTINCT customer_id, customer_first_name, customer_last_name
+FROM denormalized_table
+ORDER BY 1;
+
+SELECT * FROM customer LIMIT 5;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    INSERT INTO customer(
+        cus_id,
+        cus_first_name,
+        cus_last_name
+    )
+    SELECT DISTINCT customer_id, customer_first_name, customer_last_name
+    FROM denormalized_table
+    ORDER BY 1;
+    """
+)
+
+conn.commit()
+
+
+cur.execute("SELECT * FROM customer LIMIT 5;")
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+
+<br>
+
+Finally, when migrating data into the `Orders Table`, we will take a different approach. All the attributes for each order will be directly transferred into the orders table, except for the foreign keys representing the product and supplier. To assign the appropriate product and supplier IDs to each record, we will use a subquery. This subquery will extract the respective IDs from the product and supplier tables based on their names. By leveraging this approach, we can accurately establish the relatioships between orders, products and suppliers within the order table, ensuring data consistency and integrity.
+
+```{python}
+#| eval: false
+
+INSERT INTO orders(
+    ord_id,
+    ord_product_id,
+    ord_supplier_id,
+    ord_customer_id,
+    ord_order_date,
+    ord_ship_date,
+    ord_quantity,
+    ord_price
+)
+SELECT 
+    table_id, 
+    (SELECT prod_id FROM product WHERE prod_name = product_name) AS ord_product_id,
+    (SELECT sup_id FROM supplier WHERE sup_name = supplier_name) AS ord_supplier_id,
+    customer_id,
+    order_date,
+    ship_date,
+    quantity,
+    price
+FROM denormalized_table
+ORDER BY 1;
+
+SELECT * FROM orders LIMIT 5;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    INSERT INTO orders(
+        ord_id,
+        ord_product_id,
+        ord_supplier_id,
+        ord_customer_id,
+        ord_order_date,
+        ord_ship_date,
+        ord_quantity,
+        ord_price
+    )
+    SELECT 
+        table_id, 
+        (SELECT prod_id FROM product WHERE prod_name = product_name) AS ord_product_id,
+        (SELECT sup_id FROM supplier WHERE sup_name = supplier_name) AS ord_supplier_id,
+        customer_id,
+        order_date,
+        ship_date,
+        quantity,
+        price
+    FROM denormalized_table
+    ORDER BY 1;
+    """
+)
+
+conn.commit()
+
+
+cur.execute("SELECT * FROM orders LIMIT 5;")
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+And that's it! We have successfully migrated and normalised our database. Before proceeding to delete the *denormalized_table*, it is good practice to test the relatioships between these tables. while our database is relatively simple, it is still valuable to verify the relationships that exist among the tables.
+
+**Order and Product Relationship**
+```{python}
+#| eval: false
+
+SELECT * 
+FROM orders 
+JOIN product ON ord_product_id = prod_id
+LIMIT 10;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    SELECT * 
+    FROM orders 
+    JOIN product ON ord_product_id = prod_id
+    LIMIT 10;
+    """
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+**Order and Supplier Relationship**
+```{python}
+#| eval: false
+
+SELECT * 
+FROM orders 
+JOIN supplier ON ord_supplier_id = sup_id
+LIMIT 10;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    SELECT * 
+    FROM orders 
+    JOIN supplier ON ord_supplier_id = sup_id
+    LIMIT 10;
+    """
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+
+**Order and Customer Reletionship**
+
+```{python}
+#| eval: false
+
+SELECT * 
+FROM orders
+JOIN customer ON ord_customer_id = cus_id
+LIMIT 10;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    SELECT * 
+    FROM orders 
+    JOIN customer ON ord_customer_id = cus_id
+    LIMIT 10;
+    """
+)
+
+results = cur.fetchall()
+
+to_pandas_df(results, cur.description)
+```
+
+<br>
+The relationship for each entity worked as expected, so we can go ahead and drop the *denormalized_table* 
+
+```{python}
+#| eval: false
+
+DROP TABLE denormalized_table;
+```
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.execute(
+    """ 
+    SELECT * 
+    FROM orders 
+    JOIN customer ON ord_customer_id = cus_id
+    LIMIT 10;
+    """
+)
+
+conn.commit()
+```
+
+
+<br>
+<br>
+
+To conclued the article, the process of migrating and normalizing our database has allowed us to achieve several significate benefits. By organizing the data into separate tables and applying the principles of normalization, we have minimized data redundancy, improved data integrity, and optimized database performance. Through this process, we have created a structured database that facilitate efficient data management, analysis, and retrieval.
+
+However, there are areas where further improvement can be made, such as considering ongoing maintenance and scalability. As the database grows and evolves over time, it may be necessary to revist the normalization process and make adjustments to accommodate new requirements.
+
+```{python}
+#| echo: false
+#| message: false
+#| warning: false
+
+cur.close()
+conn.close()
+```
